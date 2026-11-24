@@ -1,0 +1,190 @@
+{
+ "scene1": {
+  "engine": "local",
+  "duration": 3.239,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 0.945,
+    "sub": "À **3H00**..."
+   },
+   {
+    "start": 1.025,
+    "end": 2.099,
+    "sub": "FRAPPE À TA **PORTE**."
+   },
+   {
+    "start": 2.149,
+    "end": 3.188,
+    "sub": "LA VOIX DE **TA MÈRE**"
+   }
+  ]
+ },
+ "scene2": {
+  "engine": "local",
+  "duration": 4.441,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.476,
+    "sub": "TON TÉLÉPHONE **S'ALLUME**."
+   },
+   {
+    "start": 1.556,
+    "end": 2.431,
+    "sub": "**MAMAN** :"
+   },
+   {
+    "start": 2.481,
+    "end": 4.414,
+    "sub": "N'OUVRE À **PERSONNE**."
+   }
+  ]
+ },
+ "scene3": {
+  "engine": "local",
+  "duration": 3.579,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.787,
+    "sub": "LA POIGNÉE **TOURNE**."
+   },
+   {
+    "start": 2.037,
+    "end": 2.731,
+    "sub": "QUELQUE CHOSE"
+   },
+   {
+    "start": 2.751,
+    "end": 3.544,
+    "sub": "EST **DERRIÈRE**."
+   }
+  ]
+ },
+ "scene4": {
+  "engine": "local",
+  "duration": 3.657,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.234,
+    "sub": "**3 SECONDES**."
+   },
+   {
+    "start": 1.334,
+    "end": 2.32,
+    "sub": "SOUS LE **LIT**..."
+   },
+   {
+    "start": 2.37,
+    "end": 3.607,
+    "sub": "OU **DORMIR** ?"
+   }
+  ]
+ },
+ "scene5": {
+  "engine": "local",
+  "duration": 6.504,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.441,
+    "sub": "ELLE **ENTRE**."
+   },
+   {
+    "start": 1.791,
+    "end": 2.246,
+    "sub": "ELLE **S'ARRÊTE**."
+   },
+   {
+    "start": 2.746,
+    "end": 4.073,
+    "sub": "TROP **TARD**."
+   },
+   {
+    "start": 4.373,
+    "end": 6.471,
+    "sub": "RÈGLE **N°1**."
+   }
+  ]
+ },
+ "scene6": {
+  "engine": "local",
+  "duration": 2.482,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 0.654,
+    "sub": "ON **REMBOBINE**."
+   },
+   {
+    "start": 0.804,
+    "end": 2.441,
+    "sub": "FERME LES **YEUX**."
+   }
+  ]
+ },
+ "scene7": {
+  "engine": "local",
+  "duration": 6.635,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.866,
+    "sub": "À **2 CENTIMÈTRES**..."
+   },
+   {
+    "start": 2.166,
+    "end": 3.264,
+    "sub": "NE **RESPIRE** PAS."
+   },
+   {
+    "start": 3.614,
+    "end": 3.949,
+    "sub": "**3...**"
+   },
+   {
+    "start": 4.499,
+    "end": 4.763,
+    "sub": "**3... 2...**"
+   },
+   {
+    "start": 5.313,
+    "end": 5.507,
+    "sub": "**3... 2... 1...**"
+   },
+   {
+    "start": 6.107,
+    "end": 6.609,
+    "sub": "ELLE **REPART**."
+   }
+  ]
+ },
+ "scene8": {
+  "engine": "local",
+  "duration": 7.445,
+  "segments": [
+   {
+    "start": 0.0,
+    "end": 1.283,
+    "sub": "TU CROIS AVOIR **SURVÉCU** ?"
+   },
+   {
+    "start": 1.583,
+    "end": 2.897,
+    "sub": "**AIRDROP** REÇU."
+   },
+   {
+    "start": 3.147,
+    "end": 5.893,
+    "sub": "PRISE DEPUIS TON **PLACARD**."
+   },
+   {
+    "start": 6.343,
+    "end": 7.396,
+    "sub": "JE SAIS QUE TU **NE DORS PAS**."
+   }
+  ]
+ }
+}

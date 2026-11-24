@@ -15,7 +15,7 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const Voice: React.FC<{ k: SceneKey; cues: Cue[] }> = ({ k, cues }) => (
   <>
     <Sequence from={VOICE_START[k]} layout="none">
-      <Audio src={staticFile(`audio/${k.replace("s", "scene")}.mp3`)} volume={1} />
+      <Audio src={staticFile(`audio/ascenseur/${k.replace("s", "scene")}.mp3`)} volume={1} />
     </Sequence>
     <Subtitles cues={cues} voiceStart={VOICE_START[k]} voiceFrames={voiceFrames(k)} />
   </>
@@ -71,8 +71,8 @@ export const Scene2: React.FC = () => {
           />
         </div>
       </Camera>
-      <Sequence  layout="none"><Audio src={staticFile("audio/vibrate.wav")} volume={0.8} /></Sequence>
-      <Sequence from={118} layout="none"><Audio src={staticFile("audio/vibrate.wav")} volume={0.8} trimAfter={40} /></Sequence>
+      <Sequence  layout="none"><Audio src={staticFile("audio/ascenseur/vibrate.wav")} volume={0.8} /></Sequence>
+      <Sequence from={118} layout="none"><Audio src={staticFile("audio/ascenseur/vibrate.wav")} volume={0.8} trimAfter={40} /></Sequence>
       <Voice k="s2" cues={[
         { text: "TON TÉLÉPHONE", at: 0 },
         { text: "VIBRE.", at: 0.12 },
@@ -95,7 +95,7 @@ export const Scene3: React.FC = () => {
       <Camera zoom={interpolate(f, [0, 330], [1, 1.22], clamp)} shakeAmt={amt} origin="50% 48%">
         <ElevatorScene display="-4" doorOpen={open} light={flicker(f, 1.4, "s3") * (f > 110 ? 0.6 : 1)} lightColor={C.paleYellow} entity={reveal} entitySway={Math.sin(f / 25) * 0.8} />
       </Camera>
-      <Sequence from={20} layout="none"><Audio src={staticFile("audio/jumpscare.wav")} volume={0.25} trimAfter={50} /></Sequence>
+      <Sequence from={20} layout="none"><Audio src={staticFile("audio/ascenseur/jumpscare.wav")} volume={0.25} trimAfter={50} /></Sequence>
       <Voice k="s3" cues={[
         { text: "LES PORTES", at: 0.09 },
         { text: "S'OUVRENT.", at: 0.17 },
@@ -158,7 +158,7 @@ export const Scene5: React.FC = () => {
           </div>
         </div>
       )}
-      <Sequence from={72} layout="none"><Audio src={staticFile("audio/jumpscare.wav")} volume={1} /></Sequence>
+      <Sequence from={72} layout="none"><Audio src={staticFile("audio/ascenseur/jumpscare.wav")} volume={1} /></Sequence>
       <Voice k="s5" cues={[
         { text: "TU APPUIES", at: 0 },
         { text: "SUR LE BOUTON.", at: 0.1 },
@@ -202,8 +202,8 @@ export const Scene6: React.FC = () => {
           <PhoneScreen scale={0.62} time="03:12" vibrate={f < 215 ? 1 : 0} messages={[{ from: "GARDIEN", text: "Tu as survécu... mais elle est toujours dans l'ascenseur avec toi.", at: 205 }]} />
         </div>
       )}
-      <Sequence  layout="none"><Audio src={staticFile("audio/rewind.wav")} volume={0.7} trimAfter={80} /></Sequence>
-      <Sequence from={185} layout="none"><Audio src={staticFile("audio/vibrate.wav")} volume={0.8} /></Sequence>
+      <Sequence  layout="none"><Audio src={staticFile("audio/ascenseur/rewind.wav")} volume={0.7} trimAfter={80} /></Sequence>
+      <Sequence from={185} layout="none"><Audio src={staticFile("audio/ascenseur/vibrate.wav")} volume={0.8} /></Sequence>
       <Voice k="s6" cues={[
         { text: "ON **REMBOBINE**.", at: 0 },
         { text: "TU BAISSES", at: 0.1 },

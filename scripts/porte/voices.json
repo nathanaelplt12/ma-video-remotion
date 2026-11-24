@@ -1,0 +1,175 @@
+{
+  "_doc": "Chaque scène = liste de segments. 'say' = texte lu, 'sub' = sous-titre (**mot** = rouge). 'max' = durée max de la voix (s) pour tenir dans la scène. 'pause' = silence après le segment (s).",
+  "scene1": {
+    "max": 4.6,
+    "segments": [
+      {
+        "say": "À trois heures du matin,",
+        "sub": "À **3H00**...",
+        "pause": 0.08
+      },
+      {
+        "say": "quelqu'un frappe à ta porte",
+        "sub": "FRAPPE À TA **PORTE**.",
+        "pause": 0.05
+      },
+      {
+        "say": "avec la voix de ta mère.",
+        "sub": "LA VOIX DE **TA MÈRE**"
+      }
+    ]
+  },
+  "scene2": {
+    "max": 4.75,
+    "segments": [
+      {
+        "say": "Sauf que ton téléphone s'allume.",
+        "sub": "TON TÉLÉPHONE **S'ALLUME**.",
+        "pause": 0.08
+      },
+      {
+        "say": "Un message de ta mère :",
+        "sub": "**MAMAN** :",
+        "pause": 0.05
+      },
+      {
+        "say": "je suis au travail, n'ouvre à personne.",
+        "sub": "N'OUVRE À **PERSONNE**."
+      }
+    ]
+  },
+  "scene3": {
+    "max": 5.6,
+    "segments": [
+      {
+        "say": "La poignée commence à tourner toute seule.",
+        "sub": "LA POIGNÉE **TOURNE**.",
+        "pause": 0.25
+      },
+      {
+        "say": "Une ombre bloque",
+        "sub": "QUELQUE CHOSE",
+        "pause": 0.02
+      },
+      {
+        "say": "le bas de la porte.",
+        "sub": "EST **DERRIÈRE**."
+      }
+    ]
+  },
+  "scene4": {
+    "max": 6.2,
+    "segments": [
+      {
+        "say": "Trois secondes pour choisir :",
+        "sub": "**3 SECONDES**.",
+        "pause": 0.1
+      },
+      {
+        "say": "tu te caches sous le lit,",
+        "sub": "SOUS LE **LIT**...",
+        "pause": 0.05
+      },
+      {
+        "say": "ou tu fais semblant de dormir ?",
+        "sub": "OU **DORMIR** ?"
+      }
+    ]
+  },
+  "scene5": {
+    "max": 9.4,
+    "segments": [
+      {
+        "say": "Si tu vas sous le lit, elle entre...",
+        "sub": "ELLE **ENTRE**.",
+        "pause": 0.35
+      },
+      {
+        "say": "s'arrête...",
+        "sub": "ELLE **S'ARRÊTE**.",
+        "pause": 0.5
+      },
+      {
+        "say": "et se penche. Trop tard.",
+        "sub": "TROP **TARD**.",
+        "pause": 0.3
+      },
+      {
+        "say": "Règle numéro un : ne te cache jamais en bas.",
+        "sub": "RÈGLE **N°1**."
+      }
+    ]
+  },
+  "scene6": {
+    "max": 3.7,
+    "segments": [
+      {
+        "say": "On rembobine.",
+        "sub": "ON **REMBOBINE**.",
+        "pause": 0.15
+      },
+      {
+        "say": "Cette fois, tu fermes les yeux.",
+        "sub": "FERME LES **YEUX**."
+      }
+    ]
+  },
+  "scene7": {
+    "max": 10.6,
+    "segments": [
+      {
+        "say": "Elle se penche à deux centimètres de ton visage.",
+        "sub": "À **2 CENTIMÈTRES**...",
+        "pause": 0.3
+      },
+      {
+        "say": "Ne respire surtout pas.",
+        "sub": "NE **RESPIRE** PAS.",
+        "pause": 0.35
+      },
+      {
+        "say": "Trois.",
+        "sub": "**3...**",
+        "pause": 0.55
+      },
+      {
+        "say": "Deux.",
+        "sub": "**3... 2...**",
+        "pause": 0.55
+      },
+      {
+        "say": "Un...",
+        "sub": "**3... 2... 1...**",
+        "pause": 0.6
+      },
+      {
+        "say": "elle repart.",
+        "sub": "ELLE **REPART**."
+      }
+    ]
+  },
+  "scene8": {
+    "max": 11.3,
+    "segments": [
+      {
+        "say": "Tu crois avoir survécu.",
+        "sub": "TU CROIS AVOIR **SURVÉCU** ?",
+        "pause": 0.3
+      },
+      {
+        "say": "Mais tu reçois un AirDrop.",
+        "sub": "**AIRDROP** REÇU.",
+        "pause": 0.25
+      },
+      {
+        "say": "C'est une photo de toi dans ton lit... prise depuis ton placard.",
+        "sub": "PRISE DEPUIS TON **PLACARD**.",
+        "pause": 0.45
+      },
+      {
+        "say": "Je sais que tu ne dors pas.",
+        "sub": "JE SAIS QUE TU **NE DORS PAS**."
+      }
+    ]
+  }
+}

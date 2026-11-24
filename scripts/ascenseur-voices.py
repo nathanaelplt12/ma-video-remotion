@@ -4,7 +4,7 @@ sinon repli automatique sur le TTS local (say / PowerShell System.Speech / espea
 import asyncio, json, os, platform, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "public", "audio")
+OUT = os.path.join(ROOT, "public", "audio", "ascenseur")
 os.makedirs(OUT, exist_ok=True)
 texts = json.load(open(os.path.join(ROOT, "scripts", "voices.json"), encoding="utf-8"))
 

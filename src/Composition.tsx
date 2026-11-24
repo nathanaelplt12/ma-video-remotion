@@ -12,7 +12,7 @@ export const MaVideo: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: C.black }}>
       <Sequence durationInFrames={CUT_TO_BLACK} layout="none">
-        <Audio src={staticFile("audio/hum.wav")} loop volume={0.22} />
+        <Audio src={staticFile("audio/ascenseur/hum.wav")} loop volume={0.22} />
       </Sequence>
       {Object.values(SCENES).map((s, i) => {
         const Scene = scenes[i];
