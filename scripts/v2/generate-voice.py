@@ -13,10 +13,10 @@ PROXY = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
 
 VOICES = {
     # voix narrateur : grave, lente, posée
-    "narrator": dict(voice="fr-FR-HenriNeural", rate="-6%", pitch="-6Hz", slow=0.93,
-                     fx="equalizer=f=110:t=q:w=1:g=5,equalizer=f=3200:t=q:w=1.5:g=2,"
-                        "acompressor=threshold=-20dB:ratio=3:attack=5:release=80,"
-                        "aecho=0.8:0.45:55|110:0.16|0.08,volume=1.5"),
+    "narrator": dict(voice="fr-FR-HenriNeural", rate="+8%", pitch="-4Hz", slow=0.94, keep_tempo=True,
+                     fx="equalizer=f=110:t=q:w=1:g=4,equalizer=f=3500:t=q:w=1.2:g=4,"
+                        "acompressor=threshold=-22dB:ratio=4:attack=3:release=50:makeup=2,"
+                        "aecho=0.8:0.35:40|80:0.12|0.05,volume=1.4"),
     # l'entité qui imite une voix : chuchotée, distante, malsaine
     "mimic": dict(voice="fr-FR-DeniseNeural", rate="-8%", pitch="-10Hz", slow=0.9,
                   fx="highpass=f=250,lowpass=f=4200,aecho=0.8:0.7:90|180:0.35|0.2,"
@@ -50,12 +50,17 @@ for ln in lines:
     dst = os.path.join(OUT, f"vo_{ln['id']}.mp3")
     with tempfile.TemporaryDirectory() as d:
         raw = os.path.join(d, "raw.mp3")
-        words = asyncio.run(tts(ln["text"], cfg, raw))
+        text = ln["text"]
+        if ln["voice"] == "narrator":  # moins de pauses traînantes : « ... » → virgule
+            text = text.replace("... ", ", ").replace("...", ".")
+        words = asyncio.run(tts(text, cfg, raw))
         s = cfg["slow"]
-        filt = f"asetrate=24000*{s},aresample=44100,{cfg['fx']},apad=pad_dur=0.6"
+        # keep_tempo : voix plus grave (asetrate) sans ralentir le débit (atempo compense)
+        tempo = f"atempo={1 / s:.4f}," if cfg.get("keep_tempo") else ""
+        filt = f"asetrate=24000*{s},aresample=44100,{tempo}{cfg['fx']},apad=pad_dur=0.6"
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af", filt,
                         "-ac", "1", "-b:a", "160k", dst], check=True)
-    k = 1 / cfg["slow"]  # asetrate ralentit le signal
+    k = 1 if cfg.get("keep_tempo") else 1 / cfg["slow"]  # asetrate ralentit le signal
     words = [(a * k, b * k, t) for a, b, t in words]
     dur = duration(dst) - 0.45  # sans la queue de réverb
     cues, i = [], 0
