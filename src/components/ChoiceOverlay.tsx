@@ -37,7 +37,7 @@ export const ChoiceOverlay: React.FC<Props> = ({ selectAt, selected, countdownFr
   const enter = spring({ frame, fps, config: { damping: 14 } });
   const sel = spring({ frame: frame - selectAt, fps, config: { damping: 12, stiffness: 160 } });
   const secs = Math.ceil(Math.max(0, selectAt - frame) / fps);
-  const ring = interpolate(frame, [countdownFrom, selectAt], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const ring = interpolate(frame, [countdownFrom, Math.max(selectAt, countdownFrom + 1)], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <div style={{ position: "absolute", inset: 0, background: "rgba(11,9,16,0.55)", backdropFilter: "blur(10px)", zIndex: 20 }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: 520, display: "flex", flexDirection: "column", alignItems: "center", gap: 50, transform: `scale(${0.8 + 0.2 * enter})`, opacity: enter }}>
