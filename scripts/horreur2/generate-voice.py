@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Voix off « Le double des clés » : edge-tts fr-FR-HenriNeural (voix neuronale grave),
+"""Voix off « Le double des clés » : edge-tts fr-FR-RemyMultilingualNeural (voix neuronale grave),
 un fichier par réplique + horodatage de chaque mot (WordBoundary) pour caler les sous-titres.
 Sortie : public/audio/h2/v_<id>.mp3 et src/horreur2/voice.json"""
 import asyncio, json, os, ssl, subprocess, tempfile
@@ -15,15 +15,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 OUT = os.path.join(ROOT, "public", "audio", "h2")
 os.makedirs(OUT, exist_ok=True)
 LINES = json.load(open(os.path.join(os.path.dirname(__file__), "lines.json"), encoding="utf-8"))
-VOICE = "fr-FR-HenriNeural"
+VOICE = "fr-FR-RemyMultilingualNeural"  # voix neuronale récente, plus naturelle et expressive
 # Grave, chaud, proche du micro : léger boost bas-médium, de-harsh, petite pièce.
-FILTER = ("equalizer=f=110:t=q:w=1.2:g=3,equalizer=f=3500:t=q:w=1.5:g=-2,"
-          "highpass=f=60,aecho=0.8:0.4:35|70:0.10|0.05,volume=1.25")
+# Chaîne « voix off » : nettoyage, chaleur grave, présence pour l'intelligibilité,
+# dé-essage, compression puis normalisation forte (-13 LUFS) pour passer au-dessus de la musique.
+FILTER = ("highpass=f=70,equalizer=f=120:t=q:w=1.2:g=3,equalizer=f=320:t=q:w=1.4:g=-1.5,"
+          "equalizer=f=3200:t=q:w=1.3:g=2.5,equalizer=f=7500:t=q:w=2:g=-3,"
+          "acompressor=threshold=-22dB:ratio=3.5:attack=8:release=120:makeup=4,"
+          "aecho=0.85:0.3:28|55:0.07|0.035,loudnorm=I=-13:TP=-1.2:LRA=6")
 
 
 async def synth(line):
-    c = edge_tts.Communicate(line["text"], VOICE, rate=line.get("rate", "-6%"),
-                             pitch=line.get("pitch", "-7Hz"), boundary="WordBoundary", proxy=PROXY)
+    c = edge_tts.Communicate(line["text"], VOICE, rate=line.get("rate", "-4%"),
+                             pitch=line.get("pitch", "-6Hz"), boundary="WordBoundary", proxy=PROXY)
     words, audio = [], bytearray()
     async for ch in c.stream():
         if ch["type"] == "audio":

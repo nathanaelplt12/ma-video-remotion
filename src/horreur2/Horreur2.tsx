@@ -18,7 +18,7 @@ const SFX: { at: number; f: string; v: number }[] = [
   { at: 188, f: "keys_tray.wav", v: 0.9 },
   { at: 238, f: "microwave.wav", v: 0.55 },
   { at: 306, f: "sofa.wav", v: 0.7 },
-  { at: 362, f: "scroll.wav", v: 0.5 }, { at: 390, f: "notif.wav", v: 0.45 },
+  { at: 362, f: "notif.wav", v: 0.5 }, { at: 372, f: "scroll.wav", v: 0.4 },
   { at: 480, f: "clock_ff.wav", v: 0.6 }, { at: 480, f: "whoosh.wav", v: 0.4 },
   { at: 555, f: "switch.wav", v: 0.95 }, { at: 556, f: "impact.wav", v: 0.3 },
   { at: 600, f: "steps_soft.wav", v: 0.5 },
@@ -28,10 +28,10 @@ const SFX: { at: number; f: string; v: number }[] = [
   { at: 1062, f: "bang.wav", v: 1 },
   { at: 1080, f: "whoosh.wav", v: 0.6 }, { at: 1080, f: "impact.wav", v: 0.3 },
   { at: 1202, f: "creak.wav", v: 1 },
-  { at: 1264, f: "steps_heavy.wav", v: 0.45 },
+  { at: 1264, f: "steps_heavy.wav", v: 0.45 }, { at: 1322, f: "notif.wav", v: 0.6 },
   { at: 1399, f: "tap.wav", v: 0.8 }, { at: 1402, f: "notif.wav", v: 0.55 },
-  { at: 1444, f: "glitch.wav", v: 0.6 }, { at: 1473, f: "glitch.wav", v: 0.5 },
-  { at: 1500, f: "glitch.wav", v: 0.4 },
+  { at: 1449, f: "glitch.wav", v: 0.5 },
+  { at: 1452, f: "tap.wav", v: 0.5 }, { at: 1488, f: "stinger.wav", v: 0.2 }, { at: 1500, f: "glitch.wav", v: 0.4 },
   { at: 1562, f: "bathroom_door.wav", v: 0.9 },
   { at: 1622, f: "steps_soft.wav", v: 0.35 },
   { at: 1682, f: "keys_jingle.wav", v: 0.6 }, { at: 1688, f: "glitch.wav", v: 0.3 },
@@ -43,7 +43,7 @@ const SFX: { at: number; f: string; v: number }[] = [
   // 2100–2160 : SILENCE TOTAL
   { at: 2162, f: "key_insert.wav", v: 1 },
   { at: 2233, f: "handle_down.wav", v: 1 }, { at: 2238, f: "impact.wav", v: 0.8 },
-  { at: 2280, f: "glitch.wav", v: 0.7 }, { at: 2282, f: "lock.wav", v: 0.8 }, { at: 2308, f: "glitch.wav", v: 0.4 },
+  { at: 2260, f: "glitch.wav", v: 0.35 }, { at: 2270, f: "glitch.wav", v: 0.25 }, { at: 2280, f: "glitch.wav", v: 0.6 }, { at: 2282, f: "lock.wav", v: 0.8 }, { at: 2308, f: "glitch.wav", v: 0.4 },
   { at: 2340, f: "glitch.wav", v: 0.5 }, { at: 2342, f: "notif.wav", v: 0.5 }, { at: 2390, f: "glitch.wav", v: 0.5 },
 ];
 
@@ -65,7 +65,7 @@ const VOICE_SPANS = Object.values(voice).map((v) => {
 });
 const scoreVol = (fr: number) => {
   const d = Math.min(...VOICE_SPANS.map(([s, e]) => (fr < s ? s - fr : fr > e ? fr - e : 0)));
-  return 0.5 * interpolate(d, [0, 8], [0.55, 1], { extrapolateRight: "clamp" });
+  return 0.5 * interpolate(d, [0, 8], [0.45, 1], { extrapolateRight: "clamp" });
 };
 
 const Bed: React.FC<{ f: string; from: number; vol: (abs: number) => number }> = ({ f, from, vol }) => (
@@ -98,6 +98,24 @@ const Hud: React.FC = () => {
   );
 };
 
+/** Carte de contexte : qui est le narrateur. */
+const Context: React.FC = () => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const from = 126, to = 236;
+  if (f < from || f >= to) return null;
+  const k = spring({ frame: f - from, fps, config: { damping: 14, stiffness: 200 } });
+  const out = interpolate(f, [to - 6, to], [1, 0], { extrapolateLeft: "clamp" });
+  return (
+    <div style={{ position: "absolute", left: 64, top: 300, opacity: out, transform: `translateX(${(1 - k) * -80}px)`, fontFamily: FONT }}>
+      <div style={{ background: "rgba(10,10,12,0.78)", borderLeft: "10px solid #f59e0b", padding: "20px 30px", borderRadius: 10 }}>
+        <div style={{ fontSize: 56, fontWeight: 900, color: "#fff", letterSpacing: 2 }}>HUGO, 26 ANS</div>
+        <div style={{ fontSize: 34, fontWeight: 700, color: "#fcd34d", marginTop: 6 }}>Emménagé seul il y a 3 semaines</div>
+      </div>
+    </div>
+  );
+};
+
 /** Étalonnage global : teinte chaude -> bleu nuit glacial. */
 const Grade: React.FC = () => {
   const f = useCurrentFrame();
@@ -122,6 +140,7 @@ export const Horreur2: React.FC = () => {
       ))}
       <Grade />
       <Hud />
+      <Context />
       <Subs />
       {/* Audio */}
       {BEDS.map((b, i) => (

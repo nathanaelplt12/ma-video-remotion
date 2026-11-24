@@ -120,7 +120,7 @@ const Tray: React.FC<{ abs: number; f: number; hand: boolean; double: boolean; m
       <ellipse cx={540} cy={1080} rx={380} ry={270} fill="#000" opacity={0.35} />
       <ellipse cx={540} cy={1050} rx={370} ry={260} fill={mix("#3d4350", "#d9cfc0", w)} />
       <ellipse cx={540} cy={1060} rx={320} ry={215} fill={mix("#262a33", "#b3a693", w)} />
-      {double && <KeyRing x={390} y={1010} scale={0.8} tag={PAL.red} swing={-20} />}
+      {double && <KeyRing x={390} y={1010} scale={0.8} tag={PAL.red} swing={-20} label="CH." />}
       {mark && (
         <g opacity={blink ? 1 : 0.35}>
           <ellipse cx={400} cy={1080} rx={170} ry={130} fill="none" stroke={PAL.red} strokeWidth={10} strokeDasharray="30 18" />
@@ -261,7 +261,7 @@ const PhoneInHand: React.FC<{ f: number; children: React.ReactNode; thumbX: numb
 export const S2e: React.FC<P> = ({ abs }) => {
   const f = useF();
   const scroll = (f * 22) % 1400;
-  const notif = lerp(f, [28, 34], [-200, 40], ease);
+  const notif = lerp(f, [2, 8], [-240, 40], ease);
   return (
     <Cam z0={1.08} z1={1.16} ox={540} oy={900}>
       <Svg>
@@ -280,10 +280,13 @@ export const S2e: React.FC<P> = ({ abs }) => {
           <rect width={540} height={70} fill="#101114" />
           <text x={40} y={50} fill="#fff" fontFamily={FONT} fontWeight={700} fontSize={28}>21:47</text>
           <g transform={`translate(20 ${notif})`}>
-            <rect width={500} height={120} rx={26} fill="#2a2b30" opacity={0.97} />
-            <rect x={20} y={24} width={70} height={70} rx={18} fill="#22c55e" />
-            <text x={110} y={52} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={26}>Maman</text>
-            <text x={110} y={88} fill="#ddd" fontFamily={FONT} fontSize={24}>Bien rentré ? Bisous</text>
+            <rect width={500} height={190} rx={26} fill="#2a2b30" opacity={0.97} />
+            <rect x={20} y={24} width={70} height={70} rx={18} fill="#2563eb" />
+            <text x={55} y={72} fill="#fff" fontFamily={FONT} fontWeight={900} fontSize={34} textAnchor="middle">A</text>
+            <text x={110} y={52} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={26}>Agence Immo</text>
+            <text x={110} y={90} fill="#ddd" fontFamily={FONT} fontSize={23}>L'ancien locataire n'a jamais</text>
+            <text x={110} y={122} fill="#ddd" fontFamily={FONT} fontSize={23}>rendu ses clés. Changement</text>
+            <text x={110} y={154} fill="#ddd" fontFamily={FONT} fontSize={23}>de serrure prévu lundi.</text>
           </g>
         </PhoneInHand>
       </Svg>
@@ -640,16 +643,35 @@ export const S4f: React.FC<P> = () => {
 
 export const S4g: React.FC<P> = () => {
   const f = useF();
-  const tr = shake(f, 7, "tr");
+  const tr = shake(f, 6, "tr");
+  const pop = lerp(f, [2, 8], [-260, 60], ease);
+  const dropY = lerp(f, [24, 38], [-120, 640], (t) => t * t);
+  const splash = f >= 38 ? Math.min(1, (f - 38) / 4) : 0;
   return (
-    <Cam z0={1.0} z1={1.05}>
+    <Cam z0={1.05} z1={1.18} oy={760} punchAt={6}>
       <Svg>
-        <rect width={1080} height={1920} fill="#05070d" />
-        <g transform="translate(980 900) scale(2.4)">
-          <Face uid="sw" pupil={0.1} lid={1.2} frown={-0.6} sweat={lerp(f, [0, 58], [0, 1])} light="#dfe9ff" lx={-150} ly={150} lightR={420} darkness={0.85} />
-        </g>
-        <g transform={`translate(${300 + tr.x} ${1650 + tr.y}) rotate(${-10 + tr.x * 0.4}) scale(1.2)`}>
-          <Hand uid="swh2" sleeve={mix(PAL.hoodieYellow, "#0b0e17", 0.7)} curl={0.4} shade={0.55} />
+        <rect width={1080} height={1920} fill="#04060b" />
+        <g transform={`translate(${tr.x} ${tr.y}) rotate(${tr.x * 0.15} 540 900)`}>
+          <Glow id="smsg" cx={540} cy={800} r={800} color="#dfe9ff" o={0.22} />
+          <rect x={210} y={240} width={660} height={1320} rx={80} fill="#0b0b0d" />
+          <rect x={232} y={262} width={616} height={1276} rx={64} fill="#0c1426" />
+          <text x={540} y={500} fill="#e5e7eb" fontFamily={FONT} fontWeight={300} fontSize={150} textAnchor="middle">00:42</text>
+          <text x={540} y={560} fill="#9aa4b8" fontFamily={FONT} fontWeight={500} fontSize={34} textAnchor="middle">vendredi 25 novembre</text>
+          <g transform={`translate(262 ${560 + pop})`}>
+            <rect width={556} height={190} rx={30} fill="#1f2430" opacity={0.97} />
+            <rect x={24} y={26} width={72} height={72} rx={36} fill="#4b5563" />
+            <text x={60} y={74} fill="#fff" fontFamily={FONT} fontWeight={900} fontSize={36} textAnchor="middle">?</text>
+            <text x={116} y={56} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={28}>Numéro inconnu</text>
+            <text x={116} y={100} fill="#e5e7eb" fontFamily={FONT} fontSize={27}>Pourquoi tu ne dors pas,</text>
+            <text x={116} y={140} fill="#e5e7eb" fontFamily={FONT} fontSize={27}>Hugo ?</text>
+            <text x={536} y={56} fill="#9aa4b8" fontFamily={FONT} fontSize={22} textAnchor="end">maintenant</text>
+          </g>
+          {/* goutte de sueur qui tombe sur l'écran */}
+          {f >= 24 && f < 38 && <path d={`M 600 ${dropY - 34} Q 616 ${dropY} 612 ${dropY + 10} Q 600 ${dropY + 24} 588 ${dropY + 10} Q 584 ${dropY} 600 ${dropY - 34} Z`} fill="#e8f1ff" opacity={0.85} />}
+          {splash > 0 && <ellipse cx={600} cy={650} rx={20 + splash * 26} ry={14 + splash * 16} fill="#e8f1ff" opacity={0.35} />}
+          <g transform="translate(250 1480) rotate(16) scale(1.15)">
+            <Hand uid="smh" curl={0.6} shade={0.1} sleeve={mix(PAL.hoodieYellow, "#0b0e17", 0.7)} />
+          </g>
         </g>
       </Svg>
       <Finish vig={0.9} />
@@ -696,21 +718,52 @@ export const S5a: React.FC<P> = () => {
 
 export const S5b: React.FC<P> = () => {
   const f = useF();
-  const g = (f >= 4 && f < 9) || (f >= 33 && f < 37) || f >= 56;
-  const dots = ".".repeat(1 + (Math.floor(f / 8) % 3));
+  const list = f >= 12;
+  const g = (f >= 9 && f < 13) || f >= 56;
+  const dots = ".".repeat(1 + (Math.floor(f / 6) % 3));
+  const rows: [string, string, boolean][] = [
+    ["00:41", "Mouvement • Cuisine", false],
+    ["23:12", "Mouvement • Entrée", false],
+    ["21:58", "Mouvement • Couloir", false],
+    ["21:16", "Mouvement • Salle de bain", true],
+  ];
   return (
-    <Cam z0={1.0} z1={1.06} punchAt={33}>
+    <Cam z0={1.0} z1={1.05} ox={300} oy={1180} punchAt={list ? 40 : undefined}>
       <Glitch on={g} seed="cx">
-        <AbsoluteFill style={{ background: "#050608", alignItems: "center", justifyContent: "center" }}>
-          <svg width={200} height={200} viewBox="-100 -100 200 200">
-            <circle r={70} fill="none" stroke="#222" strokeWidth={14} />
-            <circle r={70} fill="none" stroke="#e5e7eb" strokeWidth={14} strokeDasharray="110 330" transform={`rotate(${f * 14})`} />
-          </svg>
-          <div style={{ marginTop: 50, fontFamily: MONO, fontWeight: 800, fontSize: 64, color: "#e5e7eb", letterSpacing: 6 }}>CONNEXION{dots}</div>
-          <div style={{ marginTop: 20, fontFamily: MONO, fontSize: 32, color: "#6b7280" }}>CAM 01 • SALON</div>
-        </AbsoluteFill>
+        {!list ? (
+          <AbsoluteFill style={{ background: "#050608", alignItems: "center", justifyContent: "center" }}>
+            <svg width={200} height={200} viewBox="-100 -100 200 200">
+              <circle r={70} fill="none" stroke="#222" strokeWidth={14} />
+              <circle r={70} fill="none" stroke="#e5e7eb" strokeWidth={14} strokeDasharray="110 330" transform={`rotate(${f * 14})`} />
+            </svg>
+            <div style={{ marginTop: 50, fontFamily: MONO, fontWeight: 800, fontSize: 64, color: "#e5e7eb", letterSpacing: 6 }}>CONNEXION{dots}</div>
+          </AbsoluteFill>
+        ) : (
+          <AbsoluteFill style={{ background: "#07090f", padding: "300px 150px 0 110px", fontFamily: FONT, color: "#e5e7eb" }}>
+            <div style={{ fontSize: 46, fontWeight: 900, letterSpacing: 2 }}>ALERTES • CAM SALON</div>
+            <div style={{ fontSize: 30, color: "#9aa4b8", marginTop: 8, marginBottom: 40 }}>Notifications désactivées • 4 alertes</div>
+            {rows.map(([h, l, hot], i) => {
+              const k = lerp(f, [12 + i * 5, 17 + i * 5], [0, 1], ease);
+              const blink = hot && f >= 32 && Math.floor(f / 5) % 2 === 0;
+              return (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", gap: 28, padding: "26px 28px", marginBottom: 20, borderRadius: 24,
+                  background: hot ? (blink ? "rgba(239,68,68,0.45)" : "rgba(239,68,68,0.22)") : "#141924",
+                  border: hot ? `4px solid ${PAL.red}` : "4px solid transparent",
+                  opacity: k, transform: `translateX(${(1 - k) * 120}px)`,
+                }}>
+                  <div style={{ width: 150, height: 100, borderRadius: 14, background: "#2b2f38" }} />
+                  <div>
+                    <div style={{ fontFamily: MONO, fontSize: 50, fontWeight: 800, color: hot ? "#fff" : "#cbd5e1" }}>{h}</div>
+                    <div style={{ fontSize: 30, color: hot ? "#fecaca" : "#94a3b8" }}>{l}{hot ? " • 1RE ALERTE" : ""}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </AbsoluteFill>
+        )}
       </Glitch>
-      <Finish vig={0.8} grain={0.2} />
+      <Finish vig={0.8} grain={0.18} />
     </Cam>
   );
 };
@@ -907,7 +960,19 @@ export const S6f: React.FC<P> = () => {
 /** La poignée descend d'un coup sec -> cut au noir. */
 export const S6g: React.FC<P> = () => {
   const f = useF();
-  if (f >= 18) return <AbsoluteFill style={{ background: "#000" }} />;
+  if (f >= 18) {
+    const flash = (f >= 40 && f < 44) || (f >= 50 && f < 52);
+    return (
+      <AbsoluteFill style={{ background: "#000" }}>
+        {flash && (
+          <Svg>
+            <Glow id="kf" cx={540} cy={900} r={520} color={PAL.coldLight} o={0.25} />
+            <KeyRing x={540} y={760} scale={2.6} tag={PAL.red} swing={-12} label="CHAMBRE" />
+          </Svg>
+        )}
+      </AbsoluteFill>
+    );
+  }
   const a = f < 13 ? shake(f, 1.5, "hg").x : lerp(f, [13, 15], [0, -42]);
   return (
     <Cam z0={1.3} z1={1.36} ox={420} oy={860} punchAt={13} shakeAmt={f >= 13 ? 14 : 2}>

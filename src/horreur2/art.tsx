@@ -293,8 +293,8 @@ export const Key: React.FC<{ rot: number; len?: number; color?: string }> = ({ r
   </g>
 );
 
-export const KeyRing: React.FC<{ x: number; y: number; scale?: number; tag?: string; swing?: number }> = ({
-  x, y, scale = 1, tag = PAL.red, swing = 0,
+export const KeyRing: React.FC<{ x: number; y: number; scale?: number; tag?: string; swing?: number; label?: string }> = ({
+  x, y, scale = 1, tag = PAL.red, swing = 0, label,
 }) => (
   <g transform={`translate(${x} ${y}) scale(${scale}) rotate(${swing})`}>
     <circle cx={0} cy={0} r={46} fill="none" stroke="#b9bcc4" strokeWidth={9} />
@@ -305,6 +305,9 @@ export const KeyRing: React.FC<{ x: number; y: number; scale?: number; tag?: str
       <g transform="rotate(-60)">
         <rect x={-36} y={40} width={72} height={110} rx={20} fill={tag} />
         <circle cx={0} cy={62} r={10} fill="#000" opacity={0.4} />
+        {label && (
+          <text x={0} y={118} fill="#fff" fontFamily="Inter, sans-serif" fontWeight={900} fontSize={label.length > 3 ? 15 : 24} textAnchor="middle">{label}</text>
+        )}
       </g>
     </g>
   </g>

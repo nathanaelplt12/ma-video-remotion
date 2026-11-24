@@ -7,33 +7,44 @@
  },
  {
   "id": "2a",
-  "at": 126,
-  "text": "Il est vingt-et-une heures quinze."
+  "at": 124,
+  "text": "Je m'appelle Hugo. Jeudi, vingt-et-une heures quinze."
  },
  {
   "id": "2b",
-  "at": 172,
-  "text": "Je rentre d'une longue journée, je pose mes clés à l'entrée, je mange un morceau et je me pose sur le canapé."
+  "at": 236,
+  "text": "Je pose mes clés à côté du double, et je me pose sur le canapé."
  },
  {
   "id": "2c",
-  "at": 450,
-  "text": "Une soirée totalement normale."
+  "at": 350,
+  "text": "L'agence m'écrit : l'ancien locataire n'a jamais rendu ses clés."
+ },
+ {
+  "id": "2d",
+  "at": 462,
+  "text": "Rien de grave. Une soirée normale."
  },
  {
   "id": "3a",
-  "at": 546,
-  "text": "À vingt-trois heures dix, j'éteins tout pour aller dormir."
+  "at": 562,
+  "text": "Vingt-trois heures dix, j'éteins tout."
  },
  {
   "id": "3b",
-  "at": 644,
-  "text": "En passant dans l'entrée, je remarque que mon double de clés n'est plus sur le meuble."
+  "at": 640,
+  "text": "Dans l'entrée, mon double de clés n'est plus sur le meuble."
  },
  {
   "id": "3c",
-  "at": 850,
-  "text": "Je me dis que j'ai dû le ranger dans mon sac."
+  "at": 800,
+  "text": "Je me dis que je l'ai rangé dans mon sac."
+ },
+ {
+  "id": "3d",
+  "at": 905,
+  "rate": "-10%",
+  "text": "Grosse erreur."
  },
  {
   "id": "4a",
@@ -42,35 +53,44 @@
  },
  {
   "id": "4a2",
-  "at": 996,
-  "rate": "+2%",
+  "at": 1004,
   "text": "Je suis dans mon lit, sur mon téléphone..."
  },
  {
   "id": "4b",
-  "at": 1068,
+  "at": 1076,
   "text": "quand j'entends un bruit sec dans la cuisine."
  },
  {
   "id": "4c",
-  "at": 1180,
+  "at": 1170,
   "text": "Puis le parquet du couloir qui grince."
  },
  {
   "id": "4d",
-  "at": 1290,
-  "rate": "-12%",
+  "at": 1240,
+  "rate": "-8%",
   "text": "Quelqu'un marche chez moi."
  },
  {
+  "id": "4e",
+  "at": 1298,
+  "text": "Un SMS inconnu : pourquoi tu ne dors pas, Hugo ?"
+ },
+ {
   "id": "5a",
-  "at": 1384,
-  "text": "J'ouvre l'application de la caméra du salon."
+  "at": 1398,
+  "text": "J'ouvre la caméra du salon."
+ },
+ {
+  "id": "5a2",
+  "at": 1450,
+  "text": "Première alerte de mouvement : vingt-et-une heures seize. Il était là... depuis le début."
  },
  {
   "id": "5b",
-  "at": 1576,
-  "text": "Un homme que je n'ai jamais vu sort tranquillement de ma salle de bain, mes clés à la main."
+  "at": 1618,
+  "text": "Un homme sort de ma salle de bain, mes clés à la main."
  },
  {
   "id": "5c",
@@ -81,19 +101,25 @@
  {
   "id": "6a",
   "at": 1868,
-  "text": "Il ne fuit pas. Il se dirige directement vers ma chambre."
+  "text": "Il ne fuit pas. Il se dirige vers ma chambre."
  },
  {
   "id": "6b",
-  "at": 2040,
+  "at": 2034,
   "rate": "-10%",
   "text": "Les pas s'arrêtent devant ma porte..."
  },
  {
   "id": "6c",
   "at": 2166,
-  "rate": "-14%",
-  "pitch": "-9Hz",
+  "rate": "-12%",
   "text": "et j'entends une clé tourner dans la serrure."
+ },
+ {
+  "id": "6d",
+  "at": 2244,
+  "rate": "-12%",
+  "pitch": "-9Hz",
+  "text": "Sur ce double... il y avait la clé de ma chambre."
  }
 ]
