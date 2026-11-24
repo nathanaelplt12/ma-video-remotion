@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, random, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { DoorPanel, Face, Hand, KeyRing, Person, Rain } from "./art";
+import { DoorPanel, Face, Hand, KeyRing, PartyPhoto, Person, Rain } from "./art";
 import { Cam, CctvRoom, Finish, Glitch, Glow, Svg } from "./kit";
 import { FONT, MONO, PAL, bgAt, lerp, lightAt, mix, shake, warmth } from "./look";
 
@@ -77,7 +77,7 @@ export const S2a: React.FC<P> = ({ abs }) => {
   const px = lerp(f, [8, 59], [540, 600]);
   const ps = lerp(f, [8, 59], [0.78, 1.05]);
   return (
-    <Cam z0={1.0} z1={1.08} punchAt={0}>
+    <Cam z0={1.0} z1={1.08} punchAt={0} drunk={0.8}>
       <Svg>
         <Wall abs={abs} f={f} />
         <Glow id="lamp2a" cx={880} cy={500} r={900} color={PAL.amber} o={0.45} />
@@ -87,7 +87,7 @@ export const S2a: React.FC<P> = ({ abs }) => {
         <Rain f={f} x={330} y={520} w={420} h={1010} amt={0.15} />
         {/* personnage qui entre */}
         <g transform={`translate(${px} ${1530 + (ps - 0.78) * 260}) scale(${ps})`}>
-          <Person uid="p2a" hoodie={PAL.hoodieYellow} walk={f * 0.35} light={PAL.amber} lightAmt={0.35} armR={-14} />
+          <Person uid="p2a" hoodie={PAL.hoodieYellow} walk={f * 0.35} headTilt={Math.sin(f * 0.15) * 9} light={PAL.amber} lightAmt={0.35} armR={-14} />
         </g>
         {/* battant de porte */}
         <g transform={`translate(330 520) scale(${Math.max(0.02, pw / 420)} 1)`}>
@@ -120,7 +120,7 @@ const Tray: React.FC<{ abs: number; f: number; hand: boolean; double: boolean; m
       <ellipse cx={540} cy={1080} rx={380} ry={270} fill="#000" opacity={0.35} />
       <ellipse cx={540} cy={1050} rx={370} ry={260} fill={mix("#3d4350", "#d9cfc0", w)} />
       <ellipse cx={540} cy={1060} rx={320} ry={215} fill={mix("#262a33", "#b3a693", w)} />
-      {double && <KeyRing x={390} y={1010} scale={0.8} tag={PAL.red} swing={-20} label="CH." />}
+      {double && <KeyRing x={390} y={1010} scale={0.8} tag={PAL.red} swing={-20} />}
       {mark && (
         <g opacity={blink ? 1 : 0.35}>
           <ellipse cx={400} cy={1080} rx={170} ry={130} fill="none" stroke={PAL.red} strokeWidth={10} strokeDasharray="30 18" />
@@ -140,7 +140,7 @@ const Tray: React.FC<{ abs: number; f: number; hand: boolean; double: boolean; m
 export const S2b: React.FC<P> = ({ abs }) => {
   const f = useF();
   return (
-    <Cam z0={1.0} z1={1.12} punchAt={22} ox={600} oy={1040}>
+    <Cam z0={1.0} z1={1.12} punchAt={22} ox={600} oy={1040} drunk={0.6}>
       <Tray abs={abs} f={f} hand double />
       <Finish vig={0.6} grain={0.1} />
     </Cam>
@@ -154,7 +154,7 @@ export const S2c: React.FC<P> = ({ abs }) => {
   const flash = done ? lerp(f, [43, 45, 56], [0, 1, 0]) : 0;
   const plate = f * 4;
   return (
-    <Cam z0={1.05} z1={1.18} ox={420} oy={950} shakeAmt={done ? 3 : 0}>
+    <Cam z0={1.05} z1={1.18} ox={420} oy={950} shakeAmt={done ? 3 : 0} drunk={0.5}>
       <Svg>
         <Wall abs={abs} f={f} />
         <rect x={60} y={560} width={960} height={800} rx={40} fill="#d8d2c8" />
@@ -222,7 +222,7 @@ export const S2d: React.FC<P> = ({ abs }) => {
   const f = useF();
   const sit = lerp(f, [0, 10], [0, 1], ease);
   return (
-    <Cam z0={1.15} z1={1.05} y0={-30} y1={0} punchAt={8} oy={1200}>
+    <Cam z0={1.15} z1={1.05} y0={-30} y1={0} punchAt={8} oy={1200} drunk={0.6}>
       <Svg><LivingRoom abs={abs} f={f} rain={0} sit={sit} /></Svg>
       <Finish vig={0.55} grain={0.1} />
     </Cam>
@@ -260,16 +260,17 @@ const PhoneInHand: React.FC<{ f: number; children: React.ReactNode; thumbX: numb
 
 export const S2e: React.FC<P> = ({ abs }) => {
   const f = useF();
-  const scroll = (f * 22) % 1400;
+  const scroll = f * 3;
   const notif = lerp(f, [2, 8], [-240, 40], ease);
   return (
-    <Cam z0={1.08} z1={1.16} ox={540} oy={900}>
+    <Cam z0={1.08} z1={1.16} ox={540} oy={900} drunk={0.45}>
       <Svg>
         <Wall abs={abs} f={f} />
         <PhoneInHand f={f} uid="sc" thumbX={700} thumbY={1060 - ((f * 22) % 260)} light={PAL.amber}>
           <g transform={`translate(0 ${-scroll})`}>
+            <g transform="translate(30 250)"><PartyPhoto uid="feed" /></g>
             {Array.from({ length: 12 }).map((_, i) => (
-              <g key={i} transform={`translate(30 ${110 + i * 240})`}>
+              <g key={i} transform={`translate(30 ${580 + i * 240})`}>
                 <rect width={480} height={210} rx={22} fill={["#3b2a4a", "#24405a", "#5a3b24", "#2f4a33"][i % 4]} />
                 <rect x={24} y={150} width={300} height={18} rx={9} fill="#fff" opacity={0.5} />
                 <rect x={24} y={178} width={200} height={14} rx={7} fill="#fff" opacity={0.3} />
@@ -278,15 +279,15 @@ export const S2e: React.FC<P> = ({ abs }) => {
             ))}
           </g>
           <rect width={540} height={70} fill="#101114" />
-          <text x={40} y={50} fill="#fff" fontFamily={FONT} fontWeight={700} fontSize={28}>21:47</text>
+          <text x={40} y={50} fill="#fff" fontFamily={FONT} fontWeight={700} fontSize={28}>02:53</text>
           <g transform={`translate(20 ${notif})`}>
-            <rect width={500} height={190} rx={26} fill="#2a2b30" opacity={0.97} />
-            <rect x={20} y={24} width={70} height={70} rx={18} fill="#2563eb" />
-            <text x={55} y={72} fill="#fff" fontFamily={FONT} fontWeight={900} fontSize={34} textAnchor="middle">A</text>
-            <text x={110} y={52} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={26}>Agence Immo</text>
-            <text x={110} y={90} fill="#ddd" fontFamily={FONT} fontSize={23}>L'ancien locataire n'a jamais</text>
-            <text x={110} y={122} fill="#ddd" fontFamily={FONT} fontSize={23}>rendu ses clés. Changement</text>
-            <text x={110} y={154} fill="#ddd" fontFamily={FONT} fontSize={23}>de serrure prévu lundi.</text>
+            <rect width={500} height={160} rx={26} fill="#2a2b30" opacity={0.97} />
+            <rect x={20} y={24} width={70} height={70} rx={35} fill="#4b5563" />
+            <text x={55} y={72} fill="#fff" fontFamily={FONT} fontWeight={900} fontSize={34} textAnchor="middle">?</text>
+            <text x={110} y={52} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={26}>+33 6 •• •• •• 17</text>
+            <text x={110} y={92} fill="#ddd" fontFamily={FONT} fontSize={24}>T'as oublié ta veste chez Léa.</text>
+            <text x={110} y={126} fill="#ddd" fontFamily={FONT} fontSize={24}>Je te la ramène ?</text>
+            <text x={480} y={52} fill="#9aa4b8" fontFamily={FONT} fontSize={20} textAnchor="end">02:53</text>
           </g>
         </PhoneInHand>
       </Svg>
@@ -298,25 +299,30 @@ export const S2e: React.FC<P> = ({ abs }) => {
 export const S2f: React.FC<P> = ({ abs }) => {
   const f = useF();
   return (
-    <Cam z0={1.0} z1={1.07} x0={30} x1={-20} ox={340} oy={700}>
+    <Cam z0={1.0} z1={1.07} x0={30} x1={-20} ox={340} oy={700} drunk={0.35}>
       <Svg><LivingRoom abs={abs} f={f} rain={lerp(f, [0, 40], [0.1, 1])} sit={1} phone back /></Svg>
       <Finish vig={0.6} grain={0.11} />
     </Cam>
   );
 };
 
-/** Accéléré 21:15 -> 23:10 : salon en time-lapse + grande horloge qui défile. */
+/** Accéléré 02:51 -> 03:59 : il dort sur le canapé ; une silhouette traverse le salon (3 frames). */
 export const S2g: React.FC<P> = ({ abs }) => {
   const f = useF();
-  const mins = Math.round(lerp(f, [0, 52], [21 * 60 + 15, 23 * 60 + 10], (t) => t * t * (3 - 2 * t)));
+  const mins = Math.round(lerp(f, [0, 52], [2 * 60 + 51, 3 * 60 + 59], (t) => t * t * (3 - 2 * t)));
   const hh = String(Math.floor(mins / 60)).padStart(2, "0"), mm = String(mins % 60).padStart(2, "0");
   const pose = Math.floor(f / 6) % 3;
   return (
     <Cam z0={1.02} z1={1.1}>
       <Svg>
         <g transform={`translate(${pose * 6 - 6} 0)`}>
-          <LivingRoom abs={abs} f={f * 3} rain={1.3} sit={1} phone={pose !== 1} lamp={1 - pose * 0.08} back={pose === 2} />
+          <LivingRoom abs={abs} f={f * 3} rain={1.3} sit={1} phone={false} lamp={1 - pose * 0.08} back={pose === 2} />
         </g>
+        {f >= 19 && f < 22 && (
+          <g transform={`translate(${lerp(f, [19, 21], [1000, 760])} 1330) scale(0.62)`} opacity={0.55}>
+            <Person uid="ghost" hoodie="#0d0e12" hoodUp headDown={0.6} walk={f} light="#000" lightAmt={0} />
+          </g>
+        )}
       </Svg>
       <AbsoluteFill style={{ background: "rgba(10,14,30,0.25)" }} />
       <div style={{ position: "absolute", top: 300, width: "100%", textAlign: "center", fontFamily: MONO, fontWeight: 800, fontSize: 200, color: "#fff", textShadow: `0 0 40px ${PAL.amber}` }}>
@@ -655,15 +661,21 @@ export const S4g: React.FC<P> = () => {
           <Glow id="smsg" cx={540} cy={800} r={800} color="#dfe9ff" o={0.22} />
           <rect x={210} y={240} width={660} height={1320} rx={80} fill="#0b0b0d" />
           <rect x={232} y={262} width={616} height={1276} rx={64} fill="#0c1426" />
-          <text x={540} y={500} fill="#e5e7eb" fontFamily={FONT} fontWeight={300} fontSize={150} textAnchor="middle">00:42</text>
-          <text x={540} y={560} fill="#9aa4b8" fontFamily={FONT} fontWeight={500} fontSize={34} textAnchor="middle">vendredi 25 novembre</text>
+          <text x={540} y={500} fill="#e5e7eb" fontFamily={FONT} fontWeight={300} fontSize={150} textAnchor="middle">04:13</text>
+          <text x={540} y={560} fill="#9aa4b8" fontFamily={FONT} fontWeight={500} fontSize={34} textAnchor="middle">samedi 25 novembre</text>
+          <g transform="translate(262 800)" opacity={0.55}>
+            <rect width={556} height={150} rx={30} fill="#1f2430" />
+            <text x={30} y={50} fill="#cbd5e1" fontFamily={FONT} fontWeight={800} fontSize={24}>+33 6 •• •• •• 17</text>
+            <text x={30} y={92} fill="#cbd5e1" fontFamily={FONT} fontSize={24}>T'as oublié ta veste chez Léa…</text>
+            <text x={30} y={126} fill="#cbd5e1" fontFamily={FONT} fontSize={22}>Toi : ok</text>
+            <text x={530} y={50} fill="#94a3b8" fontFamily={FONT} fontSize={20} textAnchor="end">02:53</text>
+          </g>
           <g transform={`translate(262 ${560 + pop})`}>
             <rect width={556} height={190} rx={30} fill="#1f2430" opacity={0.97} />
             <rect x={24} y={26} width={72} height={72} rx={36} fill="#4b5563" />
             <text x={60} y={74} fill="#fff" fontFamily={FONT} fontWeight={900} fontSize={36} textAnchor="middle">?</text>
-            <text x={116} y={56} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={28}>Numéro inconnu</text>
-            <text x={116} y={100} fill="#e5e7eb" fontFamily={FONT} fontSize={27}>Pourquoi tu ne dors pas,</text>
-            <text x={116} y={140} fill="#e5e7eb" fontFamily={FONT} fontSize={27}>Hugo ?</text>
+            <text x={116} y={56} fill="#fff" fontFamily={FONT} fontWeight={800} fontSize={28}>+33 6 •• •• •• 17</text>
+            <text x={116} y={112} fill="#e5e7eb" fontFamily={FONT} fontSize={34}>Tu dors pas ?</text>
             <text x={536} y={56} fill="#9aa4b8" fontFamily={FONT} fontSize={22} textAnchor="end">maintenant</text>
           </g>
           {/* goutte de sueur qui tombe sur l'écran */}
@@ -698,7 +710,7 @@ export const S5a: React.FC<P> = () => {
         <rect width={1080} height={1920} fill="#04060b" />
         <PhoneInHand f={f} uid="hm" tremble={4} light="#dfe9ff" thumbX={lerp(f, [0, 18], [760, 556], ease)} thumbY={lerp(f, [0, 18], [1150, 840], ease)}>
           <rect width={540} height={1120} fill="#0f1730" />
-          <text x={40} y={50} fill="#fff" fontFamily={FONT} fontWeight={700} fontSize={28}>00:42</text>
+          <text x={40} y={50} fill="#fff" fontFamily={FONT} fontWeight={700} fontSize={28}>04:13</text>
           {[["#e11d48", "Photos"], ["#2563eb", "Météo"], ["#16a34a", "Messages"], ["#f59e0b", "Notes"], ["#7c3aed", "Musique"], ["#0ea5e9", "Plans"]].map(([c, l], i) => (
             <Icon key={i} x={100 + (i % 3) * 170} y={200 + Math.floor(i / 3) * 190} c={c} label={l} />
           ))}
@@ -722,10 +734,9 @@ export const S5b: React.FC<P> = () => {
   const g = (f >= 9 && f < 13) || f >= 56;
   const dots = ".".repeat(1 + (Math.floor(f / 6) % 3));
   const rows: [string, string, boolean][] = [
-    ["00:41", "Mouvement • Cuisine", false],
-    ["23:12", "Mouvement • Entrée", false],
-    ["21:58", "Mouvement • Couloir", false],
-    ["21:16", "Mouvement • Salle de bain", true],
+    ["04:11", "Mouvement • Salon", false],
+    ["03:40", "Mouvement • Salon", false],
+    ["03:02", "Mouvement • Salon", true],
   ];
   return (
     <Cam z0={1.0} z1={1.05} ox={300} oy={1180} punchAt={list ? 40 : undefined}>
@@ -741,7 +752,7 @@ export const S5b: React.FC<P> = () => {
         ) : (
           <AbsoluteFill style={{ background: "#07090f", padding: "300px 150px 0 110px", fontFamily: FONT, color: "#e5e7eb" }}>
             <div style={{ fontSize: 46, fontWeight: 900, letterSpacing: 2 }}>ALERTES • CAM SALON</div>
-            <div style={{ fontSize: 30, color: "#9aa4b8", marginTop: 8, marginBottom: 40 }}>Notifications désactivées • 4 alertes</div>
+            <div style={{ fontSize: 30, color: "#9aa4b8", marginTop: 8, marginBottom: 40 }}>Mode silencieux • 3 alertes</div>
             {rows.map(([h, l, hot], i) => {
               const k = lerp(f, [12 + i * 5, 17 + i * 5], [0, 1], ease);
               const blink = hot && f >= 32 && Math.floor(f / 5) % 2 === 0;
@@ -770,7 +781,7 @@ export const S5b: React.FC<P> = () => {
 
 const ts = (abs: number, f: number) => {
   const s = Math.floor((abs + f - 1500) / 30) + 8;
-  return `24/11 00:43:${String(s % 60).padStart(2, "0")}`;
+  return `25/11 04:13:${String(s % 60).padStart(2, "0")}`;
 };
 
 export const S5c: React.FC<P> = ({ abs }) => {
@@ -966,8 +977,10 @@ export const S6g: React.FC<P> = () => {
       <AbsoluteFill style={{ background: "#000" }}>
         {flash && (
           <Svg>
-            <Glow id="kf" cx={540} cy={900} r={520} color={PAL.coldLight} o={0.25} />
-            <KeyRing x={540} y={760} scale={2.6} tag={PAL.red} swing={-12} label="CHAMBRE" />
+            <g transform="translate(540 900) scale(6) translate(-400 -115)">
+              <PartyPhoto uid="flash" />
+            </g>
+            <rect width={1080} height={1920} fill="#000" opacity={0.25} />
           </Svg>
         )}
       </AbsoluteFill>

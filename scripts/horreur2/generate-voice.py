@@ -26,8 +26,8 @@ FILTER = ("highpass=f=70,equalizer=f=120:t=q:w=1.2:g=3,equalizer=f=320:t=q:w=1.4
 
 
 async def synth(line):
-    c = edge_tts.Communicate(line["text"], VOICE, rate=line.get("rate", "-4%"),
-                             pitch=line.get("pitch", "-6Hz"), boundary="WordBoundary", proxy=PROXY)
+    c = edge_tts.Communicate(line["text"], VOICE, rate=line.get("rate", "+10%"),
+                             pitch=line.get("pitch", "-5Hz"), boundary="WordBoundary", proxy=PROXY)
     words, audio = [], bytearray()
     async for ch in c.stream():
         if ch["type"] == "audio":

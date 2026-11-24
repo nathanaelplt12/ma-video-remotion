@@ -16,7 +16,9 @@ export const Cam: React.FC<{
   shakeAmt?: number;
   ox?: number; oy?: number;
   bg?: string;
-}> = ({ children, z0 = 1, z1 = 1.06, x0 = 0, x1 = 0, y0 = 0, y1 = 0, punchAt, shakeAmt = 0, ox = 540, oy = 960, bg = "#000" }) => {
+  /** 0–1 : balancement + vision dédoublée (alcool) */
+  drunk?: number;
+}> = ({ children, z0 = 1, z1 = 1.06, x0 = 0, x1 = 0, y0 = 0, y1 = 0, punchAt, shakeAmt = 0, ox = 540, oy = 960, bg = "#000", drunk = 0 }) => {
   const f = useCurrentFrame();
   const drift = lerp(f, [0, 59], [z0, z1]);
   const punch = punchAt === undefined ? 1 : lerp(f, [punchAt, punchAt + 4], [1, 1.15]);
@@ -27,12 +29,23 @@ export const Cam: React.FC<{
     <AbsoluteFill style={{ background: bg, overflow: "hidden" }}>
       <AbsoluteFill
         style={{
-          transform: `translate(${tx}px, ${ty}px) scale(${drift * punch})`,
+          transform: `translate(${tx + drunk * 14 * Math.sin(f * 0.07)}px, ${ty}px) scale(${drift * punch}) rotate(${drunk * 2.2 * Math.sin(f * 0.09 + 1)}deg)`,
           transformOrigin: `${ox}px ${oy}px`,
         }}
       >
         {children}
       </AbsoluteFill>
+      {drunk > 0 && (
+        <AbsoluteFill
+          style={{
+            opacity: 0.22 * drunk,
+            transform: `translate(${tx + drunk * (26 + 14 * Math.sin(f * 0.11))}px, ${ty + 6 * drunk}px) scale(${drift * punch * 1.01}) rotate(${drunk * 2.2 * Math.sin(f * 0.09 + 1.3)}deg)`,
+            transformOrigin: `${ox}px ${oy}px`,
+          }}
+        >
+          {children}
+        </AbsoluteFill>
+      )}
     </AbsoluteFill>
   );
 };
@@ -138,6 +151,9 @@ export const CctvRoom: React.FC<{ door: number; man?: ManState; time: string; zo
         <rect x={430} y={1120} width={520} height={160} rx={30} fill="#5b5b5b" />
         <rect x={400} y={1000} width={70} height={280} rx={30} fill="#727272" />
         <rect x={910} y={1000} width={70} height={280} rx={30} fill="#727272" />
+        {/* la veste « ramenée », posée sur l'accoudoir */}
+        <path d="M 820 1010 Q 900 980 960 1030 L 975 1190 Q 930 1215 880 1185 L 860 1100 Q 830 1080 820 1010 Z" fill="#2b2b2b" />
+        <path d="M 880 1040 L 900 1180" stroke="#1a1a1a" strokeWidth={6} />
         {/* tapis + table basse */}
         <ellipse cx={600} cy={1520} rx={420} ry={170} fill="#3f3f3f" />
         <rect x={460} y={1400} width={300} height={140} rx={12} fill="#2c2c2c" />

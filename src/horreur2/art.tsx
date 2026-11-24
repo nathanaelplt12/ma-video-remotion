@@ -367,3 +367,33 @@ export const Grain: React.FC<{ f: number; amt?: number }> = ({ f, amt = 0.12 }) 
     <rect width="100%" height="100%" filter={`url(#grain${f % 6})`} />
   </svg>
 );
+
+/* -------------------------------------------------------------------------- */
+/* Photo de la soirée (story) : 480 x 300. Au fond, un homme en sweat sombre    */
+/* qui fixe l'objectif — indice à revoir.                                       */
+/* -------------------------------------------------------------------------- */
+export const PartyPhoto: React.FC<{ uid: string }> = ({ uid }) => (
+  <g>
+    <defs>
+      <linearGradient id={`${uid}pp`} x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stopColor="#3b1d4a" />
+        <stop offset="1" stopColor="#120a1a" />
+      </linearGradient>
+    </defs>
+    <rect width={480} height={300} rx={22} fill={`url(#${uid}pp)`} />
+    {Array.from({ length: 14 }).map((_, i) => (
+      <circle key={i} cx={20 + i * 34} cy={30 + Math.sin(i) * 10} r={5} fill={["#fbbf24", "#f472b6", "#60a5fa"][i % 3]} opacity={0.9} />
+    ))}
+    {/* l'homme au fond, capuche, visage dans l'ombre */}
+    <g transform="translate(400 210) scale(0.16)">
+      <Person uid={`${uid}bg`} hoodie="#141418" hoodUp headDown={0} light="#ffffff" lightAmt={0.05} />
+    </g>
+    {/* amis au premier plan */}
+    {[[90, "#f97316"], [170, "#22d3ee"], [250, "#e0a91c"], [320, "#a3e635"]].map(([x, c], i) => (
+      <g key={i} transform={`translate(${x} 310) scale(0.26) rotate(${(i - 1.5) * 5})`}>
+        <Person uid={`${uid}f${i}`} hoodie={c as string} light="#ffd9a0" lightAmt={0.4} armL={i === 2 ? -150 : 6} />
+      </g>
+    ))}
+    <rect width={480} height={300} rx={22} fill="#fff" opacity={0.05} />
+  </g>
+);

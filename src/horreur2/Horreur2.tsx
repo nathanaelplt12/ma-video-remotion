@@ -78,10 +78,10 @@ const Hud: React.FC = () => {
   const { fps } = useVideoConfig();
   let label = "";
   let since = 0;
-  if (f >= 120 && f < 480) { label = "JEUDI • 21:15"; since = 120; }
-  else if (f >= 540 && f < 960) { label = "JEUDI • 23:10"; since = 540; }
-  else if (f >= 960 && f < 1380) { label = "VENDREDI • 00:42"; since = 960; }
-  else if ((f >= 1740 && f < 1800) || (f >= 1920 && f < 2238)) { label = "VENDREDI • 00:43"; since = f < 1800 ? 1740 : 1920; }
+  if (f >= 120 && f < 480) { label = "SAMEDI • 02:47"; since = 120; }
+  else if (f >= 540 && f < 960) { label = "SAMEDI • 04:00"; since = 540; }
+  else if (f >= 960 && f < 1380) { label = "SAMEDI • 04:12"; since = 960; }
+  else if ((f >= 1740 && f < 1800) || (f >= 1920 && f < 2238)) { label = "SAMEDI • 04:13"; since = f < 1800 ? 1740 : 1920; }
   if (!label) return null;
   const pop = spring({ frame: f - since, fps, config: { damping: 12, stiffness: 260 } });
   const w = warmth(f);
@@ -93,24 +93,6 @@ const Hud: React.FC = () => {
         padding: "10px 24px", borderRadius: 14, boxShadow: `0 0 30px ${lightAt(f)}55`,
       }}>
         {label}
-      </div>
-    </div>
-  );
-};
-
-/** Carte de contexte : qui est le narrateur. */
-const Context: React.FC = () => {
-  const f = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const from = 126, to = 236;
-  if (f < from || f >= to) return null;
-  const k = spring({ frame: f - from, fps, config: { damping: 14, stiffness: 200 } });
-  const out = interpolate(f, [to - 6, to], [1, 0], { extrapolateLeft: "clamp" });
-  return (
-    <div style={{ position: "absolute", left: 64, top: 300, opacity: out, transform: `translateX(${(1 - k) * -80}px)`, fontFamily: FONT }}>
-      <div style={{ background: "rgba(10,10,12,0.78)", borderLeft: "10px solid #f59e0b", padding: "20px 30px", borderRadius: 10 }}>
-        <div style={{ fontSize: 56, fontWeight: 900, color: "#fff", letterSpacing: 2 }}>HUGO, 26 ANS</div>
-        <div style={{ fontSize: 34, fontWeight: 700, color: "#fcd34d", marginTop: 6 }}>Emménagé seul il y a 3 semaines</div>
       </div>
     </div>
   );
@@ -140,7 +122,6 @@ export const Horreur2: React.FC = () => {
       ))}
       <Grade />
       <Hud />
-      <Context />
       <Subs />
       {/* Audio */}
       {BEDS.map((b, i) => (
