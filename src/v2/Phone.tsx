@@ -50,7 +50,7 @@ export const Phone: React.FC<{ mode: Mode; from: number; textAt?: number }> = ({
   return (
     <div
       style={{
-        position: "absolute", left: 160, top: 250, width: 760, height: 1340, borderRadius: 96,
+        position: "absolute", left: 120, top: 250, width: 760, height: 1340, borderRadius: 96,
         background: "#07060c", border: "6px solid #2a2540",
         boxShadow: `0 0 180px ${C.phone}55, 0 0 30px ${C.phone}66`, overflow: "hidden", fontFamily: FONT,
       }}

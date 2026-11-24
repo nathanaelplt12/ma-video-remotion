@@ -21,18 +21,34 @@ const knockKick = (f: number) => {
   return k;
 };
 
-/** Scène 1 — accroche : deux yeux grands ouverts dans le noir + flash subliminal. */
+/** Scène 1 — démarrage choc dès la frame 0 : zoom rapide sur les yeux + titre centré, flash subliminal. */
 export const Scene1: React.FC<P> = ({ f }) => {
-  const s = lerp(f, [0, 120], [1, 1.55], Easing.inOut(Easing.quad));
+  // zoom rapide (0 → 45) puis lent : aucune image fixe, aucun fondu
+  const s = f < 45 ? lerp(f, [0, 45], [1.25, 1.75], Easing.out(Easing.cubic)) : lerp(f, [45, 120], [1.75, 2.0]);
   const j = shake(f, 1.5, "e1");
   const flash = f >= T.flash && f < T.flash + 3;
+  const title = f < 45;
+  const tj = shake(f, f < 6 ? 14 : 3, "t1");
   return (
     <AbsoluteFill style={{ background: "#000" }}>
-      <Stage style={{ opacity: lerp(f, [0, 18], [0, 1]) }}>
+      <Stage>
         <g transform={cam(540, 860, s)}>
-          <Face dark={0.94} pupil={0.85} eyeJitter={j} breath={breathPhase(f, 90)} id="s1" />
+          <Face dark={0.9} pupil={lerp(f, [0, 10], [0.35, 0.85])} eyeJitter={j} breath={breathPhase(f, 90)} id="s1" />
         </g>
       </Stage>
+      {title && (
+        <div style={{ position: "absolute", left: 40, right: 162, top: 1100, height: 400, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 65 }}>
+          <div
+            style={{
+              fontFamily: FONT, fontWeight: 900, fontSize: 124, lineHeight: 0.98, textAlign: "center", color: "white",
+              WebkitTextStroke: "14px #000", paintOrder: "stroke fill", textShadow: "0 12px 0 #000, 0 0 60px rgba(239,68,68,0.7)",
+              transform: `translate(${tj.x}px, ${tj.y}px) scale(${lerp(f, [0, 4, 45], [1.15, 1, 1.06], Easing.out(Easing.cubic))}) rotate(-2deg)`,
+            }}
+          >
+            NE RÉPONDS<br /><span style={{ color: C.danger }}>JAMAIS</span>
+          </div>
+        </div>
+      )}
       {flash && (
         <Stage>
           <rect width={1080} height={1920} fill="#2a2540" />
@@ -48,7 +64,7 @@ const Bubble: React.FC<P & { from: number; to: number }> = ({ f, from, to }) => 
   const j = shake(f, 4, "bub");
   const p = lerp(f, [from, from + 8], [0, 1]);
   return (
-    <div style={{ position: "absolute", left: 70, top: 300, transform: `translate(${j.x}px, ${j.y}px) scale(${0.7 + 0.3 * p})`, opacity: p, zIndex: 20 }}>
+    <div style={{ position: "absolute", left: 70, top: 330, transform: `translate(${j.x}px, ${j.y}px) scale(${0.7 + 0.3 * p})`, opacity: p, zIndex: 20 }}>
       <div style={{ background: "rgba(231,226,234,0.92)", color: "#1d192b", fontFamily: FONT, fontWeight: 800, fontStyle: "italic", fontSize: 50, padding: "26px 36px", borderRadius: 40, boxShadow: "0 0 40px rgba(226,232,240,0.35)" }}>
         « Tu dors ? Ouvre-moi... »
       </div>
@@ -69,7 +85,7 @@ export const Scene2: React.FC<P> = ({ f }) => {
         <g transform={cam(640, 1000, s, j.x, j.y)}>
           <Bedroom
             doorKick={k * (f % 2 ? 1 : -1)}
-            closetEyes={0.35}
+            closetEyes={0.5}
             face={{ lid: alert ? 0.15 : 0.5, mouth: "neutral", phoneLight: 1, eyeJitter: { x: alert ? -30 : 0, y: 0 }, breath: breathPhase(f) }}
           />
         </g>
@@ -88,7 +104,7 @@ export const Scene3: React.FC<P> = ({ f }) => {
       <AbsoluteFill style={{ background: C.night }}>
         <Stage>
           <g transform={cam(640, 1000, 1.14 + lerp(f, [330, 404], [0, 0.04]), j.x, j.y)}>
-            <Bedroom closetEyes={0.35} rise={lerp(f, [338, 392], [0, 0.6], ease)} face={{ mouth: "smile", lid: 0.05, phoneLight: 1, eyeJitter: { x: -30, y: 0 } }} />
+            <Bedroom closetEyes={0.5} rise={lerp(f, [338, 392], [0, 0.6], ease)} face={{ mouth: "smile", lid: 0.05, phoneLight: 1, eyeJitter: { x: -30, y: 0 } }} />
           </g>
         </Stage>
         <Bubble f={f} from={T.bubble} to={T.vibrate1} />
@@ -302,7 +318,7 @@ export const Scene7: React.FC<P> = ({ f }) => {
     <AbsoluteFill style={{ background: C.night }}>
       <Stage>
         <g transform={cam(300, 1000, 1.12)}>
-          <Bedroom door={lerp(f, [T.doorClose, T.doorShut], [0.28, 0], Easing.in(Easing.quad))} figure={1} phone={0.4} face={{ squeeze: true, brows: "squeeze", mouth: "tight" }} closetEyes={0.35} />
+          <Bedroom door={lerp(f, [T.doorClose, T.doorShut], [0.28, 0], Easing.in(Easing.quad))} figure={1} phone={0.4} face={{ squeeze: true, brows: "squeeze", mouth: "tight" }} closetEyes={0.5} />
         </g>
       </Stage>
     </AbsoluteFill>
@@ -339,15 +355,18 @@ export const Scene8: React.FC<P> = ({ f }) => {
     );
   }
   const o = lerp(f, [T.closetBurst, T.closetBurst + 3], [0, 1], Easing.out(Easing.cubic));
-  const j = shake(f, 40, "cb");
+  const rush = lerp(f, [T.closetBurst + 4, 1799], [1, 9], Easing.in(Easing.cubic));
+  const j = shake(f, 40 * Math.exp(-(f - T.closetBurst) / 5) + 6, "cb");
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <Stage>
-        <g transform={cam(540, 960, 1 + 0.25 * o, j.x, j.y)}>
-          <rect width={1080} height={1920} fill="#020103" />
-          <g transform="translate(540 900) scale(1.6)"><EntityFace pupil={0.6} smile={1.15} /></g>
-          <rect x={0} y={0} width={540 * (1 - o) + 20} height={1920} fill={C.slate2} />
-          <rect x={540 + 540 * o - 20} y={0} width={540} height={1920} fill={C.slate2} />
+        <g transform={cam(415, 820, rush)}>
+          <g transform={cam(540, 960, 1 + 0.25 * o, j.x, j.y)}>
+            <rect width={1080} height={1920} fill="#020103" />
+            <g transform="translate(540 900) scale(1.6)"><EntityFace pupil={0.6} smile={1.15} /></g>
+            <rect x={0} y={0} width={540 * (1 - o) + 20} height={1920} fill={C.slate2} />
+            <rect x={540 + 540 * o - 20} y={0} width={540} height={1920} fill={C.slate2} />
+          </g>
         </g>
       </Stage>
       <AbsoluteFill style={{ background: C.danger, mixBlendMode: "multiply", opacity: 0.5 }} />

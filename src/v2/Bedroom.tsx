@@ -82,11 +82,13 @@ export const Bedroom: React.FC<BedroomProps> = ({
       <rect x={720} y={360} width={320} height={880} fill="#16131f" />
       <rect x={732} y={372} width={142} height={868} fill={C.slate2} />
       <rect x={890} y={372} width={140} height={868} fill={C.slate2} />
-      <rect x={874} y={372} width={16} height={868} fill="#000" />
+      <rect x={870} y={372} width={24} height={868} fill="#000" />
+      <path d="M 894 372 L 912 360 L 912 1252 L 894 1240 Z" fill="#110e1a" />
       {closetEyes > 0 && (
-        <g opacity={closetEyes}>
-          <circle cx={879} cy={720} r={3.5} fill="#f4f4f5" />
-          <circle cx={885} cy={720} r={3.5} fill="#f4f4f5" />
+        <g opacity={closetEyes} transform="translate(882 720) scale(1 0.8)">
+          {/* détail caché : deux yeux dans l'entrebâillement du placard */}
+          <circle cx={-4} cy={0} r={3.2} fill="#f4f4f5" />
+          <circle cx={4} cy={0} r={3.2} fill="#f4f4f5" />
         </g>
       )}
       <circle cx={860} cy={800} r={8} fill="#8b8698" />

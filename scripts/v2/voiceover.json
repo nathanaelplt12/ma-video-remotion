@@ -3,19 +3,24 @@
  "lines": [
   {
    "id": "s1a",
-   "start": 6,
+   "start": 12,
    "voice": "narrator",
    "text": "Si on t'appelle... la nuit...",
    "cues": [
     [
-     "SI ON T'APPELLE",
-     3
+     "SI ON",
+     2
+    ],
+    [
+     "T'APPELLE",
+     1
     ],
     [
      "**LA NUIT**...",
      2
     ]
-   ]
+   ],
+   "rate": "+4%"
   },
   {
    "id": "s1b",
@@ -24,10 +29,15 @@
    "text": "ne réponds jamais.",
    "cues": [
     [
-     "NE RÉPONDS **JAMAIS**.",
-     3
+     "NE RÉPONDS",
+     2
+    ],
+    [
+     "**JAMAIS**.",
+     1
     ]
-   ]
+   ],
+   "rate": "+0%"
   },
   {
    "id": "s2a",
@@ -36,8 +46,12 @@
    "text": "Tu es seul... chez toi.",
    "cues": [
     [
-     "TU ES **SEUL**",
-     3
+     "TU ES",
+     2
+    ],
+    [
+     "**SEUL**",
+     1
     ],
     [
      "CHEZ TOI.",
@@ -52,14 +66,27 @@
    "text": "Quelqu'un frappe... avec la voix de ta mère.",
    "cues": [
     [
-     "QUELQU'UN FRAPPE",
+     "QUELQU'UN",
+     1
+    ],
+    [
+     "FRAPPE",
+     1
+    ],
+    [
+     "AVEC LA",
      2
     ],
     [
-     "AVEC LA VOIX DE **TA MÈRE**.",
-     6
+     "VOIX DE",
+     2
+    ],
+    [
+     "**TA MÈRE**.",
+     2
     ]
-   ]
+   ],
+   "rate": "+10%"
   },
   {
    "id": "s2m",
@@ -75,14 +102,23 @@
    "text": "Sauf que maman... t'envoie un message :",
    "cues": [
     [
-     "SAUF QUE **MAMAN**",
-     3
+     "SAUF QUE",
+     2
     ],
     [
-     "T'ENVOIE UN **MESSAGE** :",
-     3
+     "**MAMAN**",
+     1
+    ],
+    [
+     "T'ENVOIE UN",
+     2
+    ],
+    [
+     "**MESSAGE** :",
+     1
     ]
-   ]
+   ],
+   "rate": "+12%"
   },
   {
    "id": "s3b",
@@ -91,10 +127,19 @@
    "text": "je ne suis pas là.",
    "cues": [
     [
-     "JE NE SUIS **PAS LÀ**.",
-     5
+     "JE NE",
+     2
+    ],
+    [
+     "SUIS",
+     1
+    ],
+    [
+     "**PAS LÀ**.",
+     2
     ]
-   ]
+   ],
+   "rate": "+2%"
   },
   {
    "id": "s3c",
@@ -103,10 +148,15 @@
    "text": "Ton sang se glace.",
    "cues": [
     [
-     "TON SANG SE **GLACE**.",
-     4
+     "TON SANG",
+     2
+    ],
+    [
+     "SE **GLACE**.",
+     2
     ]
-   ]
+   ],
+   "rate": "-2%"
   },
   {
    "id": "s4a",
@@ -122,23 +172,29 @@
      "**DESCEND**.",
      1
     ]
-   ]
+   ],
+   "rate": "+6%"
   },
   {
    "id": "s4b",
-   "start": 652,
+   "start": 662,
    "voice": "narrator",
    "text": "Tu as oublié... de verrouiller.",
    "cues": [
     [
-     "TU AS OUBLIÉ",
-     3
+     "TU AS",
+     2
+    ],
+    [
+     "OUBLIÉ",
+     1
     ],
     [
      "DE **VERROUILLER**.",
      2
     ]
-   ]
+   ],
+   "rate": "+10%"
   },
   {
    "id": "s5a",
@@ -150,7 +206,8 @@
      "**3 SECONDES**.",
      2
     ]
-   ]
+   ],
+   "rate": "+16%"
   },
   {
    "id": "s5b",
@@ -159,14 +216,19 @@
    "text": "Sous le lit... ou dormir ?",
    "cues": [
     [
-     "SOUS LE **LIT**...",
-     3
+     "SOUS LE",
+     2
+    ],
+    [
+     "**LIT**...",
+     1
     ],
     [
      "OU **DORMIR** ?",
      2
     ]
-   ]
+   ],
+   "rate": "+12%"
   },
   {
    "id": "s6a",
@@ -178,7 +240,8 @@
      "ELLE **S'ARRÊTE**.",
      2
     ]
-   ]
+   ],
+   "rate": "+4%"
   },
   {
    "id": "s6b",
@@ -187,10 +250,15 @@
    "text": "Elle se penche...",
    "cues": [
     [
-     "ELLE SE **PENCHE**.",
-     3
+     "ELLE SE",
+     2
+    ],
+    [
+     "**PENCHE**.",
+     1
     ]
-   ]
+   ],
+   "rate": "-6%"
   },
   {
    "id": "s6c",
@@ -202,7 +270,8 @@
      "TROP **TARD**.",
      2
     ]
-   ]
+   ],
+   "rate": "+14%"
   },
   {
    "id": "s6d",
@@ -211,10 +280,15 @@
    "text": "Règle numéro un.",
    "cues": [
     [
-     "RÈGLE **N°1**.",
-     3
+     "RÈGLE",
+     1
+    ],
+    [
+     "**N°1**.",
+     2
     ]
-   ]
+   ],
+   "rate": "+10%"
   },
   {
    "id": "s7a",
@@ -226,7 +300,8 @@
      "ON **REMBOBINE**.",
      2
     ]
-   ]
+   ],
+   "rate": "+14%"
   },
   {
    "id": "s7b",
@@ -235,10 +310,15 @@
    "text": "Ferme les yeux.",
    "cues": [
     [
-     "FERME LES **YEUX**.",
-     3
+     "FERME",
+     1
+    ],
+    [
+     "LES **YEUX**.",
+     2
     ]
-   ]
+   ],
+   "rate": "-4%"
   },
   {
    "id": "s7c",
@@ -247,10 +327,15 @@
    "text": "Ne bouge plus.",
    "cues": [
     [
-     "NE **BOUGE** PLUS.",
-     3
+     "NE **BOUGE**",
+     2
+    ],
+    [
+     "PLUS.",
+     1
     ]
-   ]
+   ],
+   "rate": "-8%"
   },
   {
    "id": "s7d",
@@ -262,7 +347,8 @@
      "ELLE **REPART**.",
      2
     ]
-   ]
+   ],
+   "rate": "+0%"
   },
   {
    "id": "s8a",
@@ -271,14 +357,19 @@
    "text": "Tu crois être... sauvé ?",
    "cues": [
     [
-     "TU CROIS ÊTRE",
-     3
+     "TU CROIS",
+     2
+    ],
+    [
+     "ÊTRE",
+     1
     ],
     [
      "**SAUVÉ** ?",
      1
     ]
-   ]
+   ],
+   "rate": "+6%"
   },
   {
    "id": "s8b",
@@ -290,7 +381,8 @@
      "**AIRDROP** REÇU.",
      2
     ]
-   ]
+   ],
+   "rate": "+14%"
   },
   {
    "id": "s8c",
@@ -306,7 +398,8 @@
      "TON **PLACARD**.",
      2
     ]
-   ]
+   ],
+   "rate": "+4%"
   },
   {
    "id": "s8m",

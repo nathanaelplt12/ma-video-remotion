@@ -61,7 +61,7 @@ export const T = {
   photo: 1640,
   photoText: 1706,
   closetBurst: 1772,
-  black: 1778,
+  black: TOTAL,
 };
 
 export type VoiceLine = {

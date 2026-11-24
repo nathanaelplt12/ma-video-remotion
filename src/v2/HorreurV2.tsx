@@ -1,5 +1,6 @@
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, Composition, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { Camera } from "./camera";
 import { Grain } from "./fx";
 import { HUD, Subtitles } from "./Overlay";
 import { Scene1, Scene2, Scene3, Scene4, Scene5, Scene6, Scene7, Scene8 } from "./scenes";
@@ -17,6 +18,8 @@ const SCENES = [
 ];
 
 const SFX: { at: number; src: string; volume: number; dur: number }[] = [
+  // impact dès la frame 0 : démarrage choc ET raccord de la boucle (le riser final s'y coupe net)
+  { at: 0, src: "impact.wav", volume: 0.75, dur: 45 },
   { at: T.knocks, src: "knock.wav", volume: 1, dur: 54 },
   { at: T.vibrate1, src: "vibrate.wav", volume: 0.75, dur: 38 },
   { at: T.creak, src: "creak.wav", volume: 0.85, dur: 84 },
@@ -25,7 +28,8 @@ const SFX: { at: number; src: string; volume: number; dur: number }[] = [
   { at: T.recede + 35, src: "creak.wav", volume: 0.3, dur: 60 },
   { at: T.doorShut, src: "close.wav", volume: 0.8, dur: 21 },
   { at: T.vibrate2, src: "vibrate.wav", volume: 0.75, dur: 38 },
-  { at: T.closetBurst, src: "impact.wav", volume: 1, dur: 28 },
+  { at: T.closetBurst, src: "slam.wav", volume: 1, dur: 27 },
+  { at: TOTAL - 27, src: "riser.wav", volume: 0.9, dur: 27 },
 ];
 
 export const HorreurV2: React.FC = () => {
@@ -56,7 +60,9 @@ export const HorreurV2: React.FC = () => {
 
       {!black && (
         <>
-          <S f={f} />
+          <Camera f={f}>
+            <S f={f} />
+          </Camera>
           <Grain />
           <HUD />
           <Subtitles />

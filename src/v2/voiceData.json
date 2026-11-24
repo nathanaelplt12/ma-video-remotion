@@ -1,17 +1,21 @@
 {
  "s1a": {
-  "start": 6,
+  "start": 12,
   "voice": "narrator",
-  "frames": 91,
-  "speechEnd": 60,
+  "frames": 82,
+  "speechEnd": 70,
   "cues": [
    {
-    "text": "SI ON T'APPELLE",
-    "from": 9
+    "text": "SI ON",
+    "from": 15
+   },
+   {
+    "text": "T'APPELLE",
+    "from": 23
    },
    {
     "text": "**LA NUIT**...",
-    "from": 40
+    "from": 47
    }
   ]
  },
@@ -19,23 +23,31 @@
   "start": 72,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 108,
+  "speechEnd": 113,
   "cues": [
    {
-    "text": "NE RÉPONDS **JAMAIS**.",
+    "text": "NE RÉPONDS",
     "from": 75
+   },
+   {
+    "text": "**JAMAIS**.",
+    "from": 89
    }
   ]
  },
  "s2a": {
   "start": 122,
   "voice": "narrator",
-  "frames": 88,
-  "speechEnd": 172,
+  "frames": 78,
+  "speechEnd": 174,
   "cues": [
    {
-    "text": "TU ES **SEUL**",
+    "text": "TU ES",
     "from": 125
+   },
+   {
+    "text": "**SEUL**",
+    "from": 130
    },
    {
     "text": "CHEZ TOI.",
@@ -46,16 +58,28 @@
  "s2b": {
   "start": 222,
   "voice": "narrator",
-  "frames": 110,
-  "speechEnd": 295,
+  "frames": 98,
+  "speechEnd": 297,
   "cues": [
    {
-    "text": "QUELQU'UN FRAPPE",
-    "from": 225
+    "text": "QUELQU'UN",
+    "from": 224
    },
    {
-    "text": "AVEC LA VOIX DE **TA MÈRE**.",
-    "from": 254
+    "text": "FRAPPE",
+    "from": 233
+   },
+   {
+    "text": "AVEC LA",
+    "from": 256
+   },
+   {
+    "text": "VOIX DE",
+    "from": 264
+   },
+   {
+    "text": "**TA MÈRE**.",
+    "from": 272
    }
   ]
  },
@@ -69,16 +93,24 @@
  "s3a": {
   "start": 404,
   "voice": "narrator",
-  "frames": 103,
+  "frames": 89,
   "speechEnd": 471,
   "cues": [
    {
-    "text": "SAUF QUE **MAMAN**",
-    "from": 407
+    "text": "SAUF QUE",
+    "from": 406
    },
    {
-    "text": "T'ENVOIE UN **MESSAGE** :",
-    "from": 435
+    "text": "**MAMAN**",
+    "from": 418
+   },
+   {
+    "text": "T'ENVOIE UN",
+    "from": 436
+   },
+   {
+    "text": "**MESSAGE** :",
+    "from": 445
    }
   ]
  },
@@ -86,23 +118,35 @@
   "start": 486,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 521,
+  "speechEnd": 523,
   "cues": [
    {
-    "text": "JE NE SUIS **PAS LÀ**.",
+    "text": "JE NE",
     "from": 489
+   },
+   {
+    "text": "SUIS",
+    "from": 497
+   },
+   {
+    "text": "**PAS LÀ**.",
+    "from": 501
    }
   ]
  },
  "s3c": {
   "start": 530,
   "voice": "narrator",
-  "frames": 79,
-  "speechEnd": 571,
+  "frames": 78,
+  "speechEnd": 575,
   "cues": [
    {
-    "text": "TON SANG SE **GLACE**.",
+    "text": "TON SANG",
     "from": 533
+   },
+   {
+    "text": "SE **GLACE**.",
+    "from": 543
    }
   ]
  },
@@ -110,31 +154,35 @@
   "start": 595,
   "voice": "narrator",
   "frames": 85,
-  "speechEnd": 642,
+  "speechEnd": 657,
   "cues": [
    {
     "text": "LA POIGNÉE",
-    "from": 598
+    "from": 597
    },
    {
     "text": "**DESCEND**.",
-    "from": 621
+    "from": 632
    }
   ]
  },
  "s4b": {
-  "start": 652,
+  "start": 662,
   "voice": "narrator",
-  "frames": 94,
-  "speechEnd": 708,
+  "frames": 85,
+  "speechEnd": 725,
   "cues": [
    {
-    "text": "TU AS OUBLIÉ",
-    "from": 655
+    "text": "TU AS",
+    "from": 664
+   },
+   {
+    "text": "OUBLIÉ",
+    "from": 670
    },
    {
     "text": "DE **VERROUILLER**.",
-    "from": 682
+    "from": 696
    }
   ]
  },
@@ -146,23 +194,27 @@
   "cues": [
    {
     "text": "**3 SECONDES**.",
-    "from": 738
+    "from": 736
    }
   ]
  },
  "s5b": {
   "start": 790,
   "voice": "narrator",
-  "frames": 87,
-  "speechEnd": 839,
+  "frames": 78,
+  "speechEnd": 844,
   "cues": [
    {
-    "text": "SOUS LE **LIT**...",
-    "from": 793
+    "text": "SOUS LE",
+    "from": 792
+   },
+   {
+    "text": "**LIT**...",
+    "from": 801
    },
    {
     "text": "OU **DORMIR** ?",
-    "from": 814
+    "from": 816
    }
   ]
  },
@@ -170,11 +222,11 @@
   "start": 985,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1018,
+  "speechEnd": 1023,
   "cues": [
    {
     "text": "ELLE **S'ARRÊTE**.",
-    "from": 988
+    "from": 987
    }
   ]
  },
@@ -182,11 +234,15 @@
   "start": 1024,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1060,
+  "speechEnd": 1064,
   "cues": [
    {
-    "text": "ELLE SE **PENCHE**.",
+    "text": "ELLE SE",
     "from": 1027
+   },
+   {
+    "text": "**PENCHE**.",
+    "from": 1037
    }
   ]
  },
@@ -194,11 +250,11 @@
   "start": 1098,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1128,
+  "speechEnd": 1129,
   "cues": [
    {
     "text": "TROP **TARD**.",
-    "from": 1101
+    "from": 1099
    }
   ]
  },
@@ -206,11 +262,15 @@
   "start": 1132,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1169,
+  "speechEnd": 1177,
   "cues": [
    {
-    "text": "RÈGLE **N°1**.",
-    "from": 1135
+    "text": "RÈGLE",
+    "from": 1133
+   },
+   {
+    "text": "**N°1**.",
+    "from": 1148
    }
   ]
  },
@@ -218,11 +278,11 @@
   "start": 1228,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1263,
+  "speechEnd": 1264,
   "cues": [
    {
     "text": "ON **REMBOBINE**.",
-    "from": 1231
+    "from": 1230
    }
   ]
  },
@@ -230,11 +290,15 @@
   "start": 1288,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1320,
+  "speechEnd": 1329,
   "cues": [
    {
-    "text": "FERME LES **YEUX**.",
-    "from": 1291
+    "text": "FERME",
+    "from": 1290
+   },
+   {
+    "text": "LES **YEUX**.",
+    "from": 1303
    }
   ]
  },
@@ -242,11 +306,15 @@
   "start": 1345,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1376,
+  "speechEnd": 1384,
   "cues": [
    {
-    "text": "NE **BOUGE** PLUS.",
+    "text": "NE **BOUGE**",
     "from": 1348
+   },
+   {
+    "text": "PLUS.",
+    "from": 1363
    }
   ]
  },
@@ -254,27 +322,31 @@
   "start": 1430,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1462,
+  "speechEnd": 1467,
   "cues": [
    {
     "text": "ELLE **REPART**.",
-    "from": 1433
+    "from": 1432
    }
   ]
  },
  "s8a": {
   "start": 1528,
   "voice": "narrator",
-  "frames": 85,
-  "speechEnd": 1575,
+  "frames": 79,
+  "speechEnd": 1584,
   "cues": [
    {
-    "text": "TU CROIS ÊTRE",
+    "text": "TU CROIS",
     "from": 1531
    },
    {
+    "text": "ÊTRE",
+    "from": 1541
+   },
+   {
     "text": "**SAUVÉ** ?",
-    "from": 1556
+    "from": 1562
    }
   ]
  },
@@ -282,19 +354,19 @@
   "start": 1596,
   "voice": "narrator",
   "frames": 78,
-  "speechEnd": 1630,
+  "speechEnd": 1635,
   "cues": [
    {
     "text": "**AIRDROP** REÇU.",
-    "from": 1599
+    "from": 1598
    }
   ]
  },
  "s8c": {
   "start": 1640,
   "voice": "narrator",
-  "frames": 98,
-  "speechEnd": 1701,
+  "frames": 88,
+  "speechEnd": 1705,
   "cues": [
    {
     "text": "PRISE DEPUIS",
@@ -302,7 +374,7 @@
    },
    {
     "text": "TON **PLACARD**.",
-    "from": 1671
+    "from": 1673
    }
   ]
  },

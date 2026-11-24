@@ -107,3 +107,18 @@ t = t_(0.7)
 thud = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * k) for f, a, k in [(75, 1, 12), (130, 0.5, 22)])
 latch = onepole(rng.normal(0, 1, len(t)), 5000) * (np.exp(-np.maximum(t - 0.09, 0) * 220) * (t > 0.09)) * 0.8
 save("close.wav", fade(thud + latch, 0.001, 0.2), 0.6)
+
+# 8. Claquement de la porte du placard (bois lourd + vibration)
+t = t_(0.9)
+slam = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * k) for f, a, k in [(62, 1, 9), (118, 0.7, 16), (240, 0.4, 30)])
+slam += onepole(rng.normal(0, 1, len(t)), 3000) * np.exp(-t * 45) * 1.2
+save("slam.wav", fade(np.tanh(1.8 * slam), 0.0005, 0.2), 0.9)
+
+# 9. Riser de bouclage : souffle qui monte et se coupe net (raccord sur l'impact de la frame 0)
+d = 0.9; t = t_(d); env = (t / d) ** 2.2
+nz = rng.normal(0, 1, len(t))
+riser = onepole(nz, 300 + 5000 * (t / d) ** 2) * env
+riser += np.sin(2 * np.pi * np.cumsum(120 + 500 * (t / d) ** 2) / SR) * env * 0.35
+rev = np.flip(np.tanh(2 * rng.normal(0, 1, len(t)) * np.exp(-t * 6)))  # traîne inversée
+riser += onepole(rev, 2500) * 0.5
+save("riser.wav", fade(riser, 0.05, 0.004), 0.8)

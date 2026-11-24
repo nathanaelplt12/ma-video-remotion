@@ -13,7 +13,7 @@ PROXY = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
 
 VOICES = {
     # voix narrateur : grave, lente, posée
-    "narrator": dict(voice="fr-FR-HenriNeural", rate="+8%", pitch="-4Hz", slow=0.94, keep_tempo=True,
+    "narrator": dict(voice="fr-FR-RemyMultilingualNeural", rate="+8%", pitch="-2Hz", slow=0.9, keep_tempo=True,
                      fx="equalizer=f=110:t=q:w=1:g=4,equalizer=f=3500:t=q:w=1.2:g=4,"
                         "acompressor=threshold=-22dB:ratio=4:attack=3:release=50:makeup=2,"
                         "aecho=0.8:0.35:40|80:0.12|0.05,volume=1.4"),
@@ -26,9 +26,9 @@ VOICES = {
 lines = json.load(open(os.path.join(ROOT, "scripts", "v2", "voiceover.json"), encoding="utf-8"))["lines"]
 
 
-async def tts(text, cfg, dst):
+async def tts(text, cfg, dst, rate):
     words = []
-    comm = edge_tts.Communicate(text, cfg["voice"], rate=cfg["rate"], pitch=cfg["pitch"],
+    comm = edge_tts.Communicate(text, cfg["voice"], rate=rate, pitch=cfg["pitch"],
                                 boundary="WordBoundary", proxy=PROXY)
     with open(dst, "wb") as f:
         async for chunk in comm.stream():
@@ -53,7 +53,13 @@ for ln in lines:
         text = ln["text"]
         if ln["voice"] == "narrator":  # moins de pauses traînantes : « ... » → virgule
             text = text.replace("... ", ", ").replace("...", ".")
-        words = asyncio.run(tts(text, cfg, raw))
+        for attempt in range(5):  # le service renvoie parfois « No audio » : on réessaie
+            try:
+                words = asyncio.run(tts(text, cfg, raw, ln.get("rate", cfg["rate"])))
+                break
+            except edge_tts.exceptions.NoAudioReceived:
+                if attempt == 4:
+                    raise
         s = cfg["slow"]
         # keep_tempo : voix plus grave (asetrate) sans ralentir le débit (atempo compense)
         tempo = f"atempo={1 / s:.4f}," if cfg.get("keep_tempo") else ""
