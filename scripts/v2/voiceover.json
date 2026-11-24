@@ -1,0 +1,319 @@
+{
+ "_doc": "Voix off de horreur-v2. start = frame absolue (30 fps). cues = [sous-titre, nombre de mots prononcés]. voice: narrator | mimic",
+ "lines": [
+  {
+   "id": "s1a",
+   "start": 6,
+   "voice": "narrator",
+   "text": "Si on t'appelle... la nuit...",
+   "cues": [
+    [
+     "SI ON T'APPELLE",
+     3
+    ],
+    [
+     "**LA NUIT**...",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s1b",
+   "start": 72,
+   "voice": "narrator",
+   "text": "ne réponds jamais.",
+   "cues": [
+    [
+     "NE RÉPONDS **JAMAIS**.",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s2a",
+   "start": 122,
+   "voice": "narrator",
+   "text": "Tu es seul... chez toi.",
+   "cues": [
+    [
+     "TU ES **SEUL**",
+     3
+    ],
+    [
+     "CHEZ TOI.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s2b",
+   "start": 222,
+   "voice": "narrator",
+   "text": "Quelqu'un frappe... avec la voix de ta mère.",
+   "cues": [
+    [
+     "QUELQU'UN FRAPPE",
+     2
+    ],
+    [
+     "AVEC LA VOIX DE **TA MÈRE**.",
+     6
+    ]
+   ]
+  },
+  {
+   "id": "s2m",
+   "start": 310,
+   "voice": "mimic",
+   "text": "Tu dors ? Ouvre-moi...",
+   "cues": []
+  },
+  {
+   "id": "s3a",
+   "start": 404,
+   "voice": "narrator",
+   "text": "Sauf que maman... t'envoie un message :",
+   "cues": [
+    [
+     "SAUF QUE **MAMAN**",
+     3
+    ],
+    [
+     "T'ENVOIE UN **MESSAGE** :",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s3b",
+   "start": 486,
+   "voice": "narrator",
+   "text": "je ne suis pas là.",
+   "cues": [
+    [
+     "JE NE SUIS **PAS LÀ**.",
+     5
+    ]
+   ]
+  },
+  {
+   "id": "s3c",
+   "start": 530,
+   "voice": "narrator",
+   "text": "Ton sang se glace.",
+   "cues": [
+    [
+     "TON SANG SE **GLACE**.",
+     4
+    ]
+   ]
+  },
+  {
+   "id": "s4a",
+   "start": 595,
+   "voice": "narrator",
+   "text": "La poignée... descend.",
+   "cues": [
+    [
+     "LA POIGNÉE",
+     2
+    ],
+    [
+     "**DESCEND**.",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "s4b",
+   "start": 652,
+   "voice": "narrator",
+   "text": "Tu as oublié... de verrouiller.",
+   "cues": [
+    [
+     "TU AS OUBLIÉ",
+     3
+    ],
+    [
+     "DE **VERROUILLER**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s5a",
+   "start": 735,
+   "voice": "narrator",
+   "text": "Trois secondes.",
+   "cues": [
+    [
+     "**3 SECONDES**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s5b",
+   "start": 790,
+   "voice": "narrator",
+   "text": "Sous le lit... ou dormir ?",
+   "cues": [
+    [
+     "SOUS LE **LIT**...",
+     3
+    ],
+    [
+     "OU **DORMIR** ?",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s6a",
+   "start": 985,
+   "voice": "narrator",
+   "text": "Elle s'arrête.",
+   "cues": [
+    [
+     "ELLE **S'ARRÊTE**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s6b",
+   "start": 1024,
+   "voice": "narrator",
+   "text": "Elle se penche...",
+   "cues": [
+    [
+     "ELLE SE **PENCHE**.",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s6c",
+   "start": 1098,
+   "voice": "narrator",
+   "text": "Trop tard.",
+   "cues": [
+    [
+     "TROP **TARD**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s6d",
+   "start": 1132,
+   "voice": "narrator",
+   "text": "Règle numéro un.",
+   "cues": [
+    [
+     "RÈGLE **N°1**.",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s7a",
+   "start": 1228,
+   "voice": "narrator",
+   "text": "On rembobine.",
+   "cues": [
+    [
+     "ON **REMBOBINE**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s7b",
+   "start": 1288,
+   "voice": "narrator",
+   "text": "Ferme les yeux.",
+   "cues": [
+    [
+     "FERME LES **YEUX**.",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s7c",
+   "start": 1345,
+   "voice": "narrator",
+   "text": "Ne bouge plus.",
+   "cues": [
+    [
+     "NE **BOUGE** PLUS.",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "s7d",
+   "start": 1430,
+   "voice": "narrator",
+   "text": "Elle repart.",
+   "cues": [
+    [
+     "ELLE **REPART**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s8a",
+   "start": 1528,
+   "voice": "narrator",
+   "text": "Tu crois être... sauvé ?",
+   "cues": [
+    [
+     "TU CROIS ÊTRE",
+     3
+    ],
+    [
+     "**SAUVÉ** ?",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "s8b",
+   "start": 1596,
+   "voice": "narrator",
+   "text": "AirDrop reçu.",
+   "cues": [
+    [
+     "**AIRDROP** REÇU.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s8c",
+   "start": 1640,
+   "voice": "narrator",
+   "text": "Prise depuis... ton placard.",
+   "cues": [
+    [
+     "PRISE DEPUIS",
+     2
+    ],
+    [
+     "TON **PLACARD**.",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "s8m",
+   "start": 1706,
+   "voice": "mimic",
+   "text": "Tu joues très bien la comédie.",
+   "cues": []
+  }
+ ]
+}
