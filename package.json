@@ -29,7 +29,7 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
     "audio": "python3 scripts/generate-voices.py && node scripts/generate-sfx.mjs",
-    "audio:h2": "python3 scripts/horreur2/generate-voice.py && node scripts/horreur2/generate-sfx.mjs"
+    "audio:h2": "python3 scripts/horreur2/generate-voice.py && node scripts/horreur2/generate-sfx.mjs && node scripts/horreur2/generate-score.mjs"
   },
   "allowScripts": {
     "esbuild": false
