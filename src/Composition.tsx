@@ -1,55 +1,33 @@
-import {
-  AbsoluteFill,
-  Composition,
-  interpolate,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { Audio } from "@remotion/media";
+import { AbsoluteFill, Composition, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { HUD } from "./components/HUD";
+import { Scene1, Scene2, Scene3, Scene4, Scene5, Scene6 } from "./scenes";
+import { C, FPS, HEIGHT, SCENES, TOTAL_FRAMES, WIDTH } from "./theme";
 
-export const FPS = 30;
-export const DURATION_IN_SECONDS = 60;
-export const DURATION_IN_FRAMES = FPS * DURATION_IN_SECONDS; // 1800
+const CUT_TO_BLACK = TOTAL_FRAMES - 15;
 
-export const MyComposition = () => {
-  return (
-    <Composition
-      id="MaVideo"
-      component={MaVideo}
-      durationInFrames={DURATION_IN_FRAMES}
-      fps={FPS}
-      width={1920}
-      height={1080}
-    />
-  );
-};
-
-// Placeholder : un titre en fondu + un compteur de secondes, à remplacer.
 export const MaVideo: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
-
-  const opacity = interpolate(
-    frame,
-    [0, fps, durationInFrames - fps, durationInFrames],
-    [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-
+  const scenes = [Scene1, Scene2, Scene3, Scene4, Scene5, Scene6];
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#0f172a",
-        color: "white",
-        fontFamily: "sans-serif",
-        justifyContent: "center",
-        alignItems: "center",
-        opacity,
-      }}
-    >
-      <div style={{ fontSize: 120, fontWeight: 700 }}>Ma vidéo</div>
-      <div style={{ fontSize: 48, marginTop: 24, opacity: 0.7 }}>
-        {Math.floor(frame / fps)} s / {durationInFrames / fps} s
-      </div>
+    <AbsoluteFill style={{ background: C.black }}>
+      <Sequence durationInFrames={CUT_TO_BLACK} layout="none">
+        <Audio src={staticFile("audio/hum.wav")} loop volume={0.22} />
+      </Sequence>
+      {Object.values(SCENES).map((s, i) => {
+        const Scene = scenes[i];
+        return (
+          <Sequence key={i} from={s.from} durationInFrames={s.duration} name={`Scène ${i + 1}`}>
+            <Scene />
+          </Sequence>
+        );
+      })}
+      <HUD />
+      {frame >= CUT_TO_BLACK && <AbsoluteFill style={{ background: "#000", zIndex: 100 }} />}
     </AbsoluteFill>
   );
 };
+
+export const MyComposition = () => (
+  <Composition id="MaVideo" component={MaVideo} durationInFrames={TOTAL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+);

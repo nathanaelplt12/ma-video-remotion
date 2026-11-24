@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.547",
+    "@remotion/media": "4.0.547",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "remotion": "4.0.547"
@@ -26,7 +27,8 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "audio": "python3 scripts/generate-voices.py && node scripts/generate-sfx.mjs"
   },
   "allowScripts": {
     "esbuild": false
